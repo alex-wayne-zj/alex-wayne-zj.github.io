@@ -20,8 +20,10 @@ export default defineConfig({
         {
           text: "Coding",
           items: [
-            { text: "Markdown Examples", link: "/markdown-examples" },
-            { text: "Runtime API Examples", link: "/api-examples" },
+            { text: "K8s", link: "/coding/K8s_notes" },
+            { text: "计算机图形学常见概念", link: "/coding/computer_graphics"},
+            { text: "Golang", link: "/coding/Golang_notes"}, 
+            { text: "Linux", link: "/coding/linux"},
           ],
         },
       ],
@@ -29,8 +31,9 @@ export default defineConfig({
         {
           text: "Passion",
           items: [
-            { text: "Markdown Examples", link: "/markdown-examples" },
-            { text: "Runtime API Examples", link: "/api-examples" },
+            { text: "Financing principles", link: "/passion/financing-principles" },
+            { text: "Financing terminologies", link: "/passion/financing-terminologies" },
+            { text: "草东没有派对", link: "/passion/no-party-for-caodong" },
           ],
         },
       ],
