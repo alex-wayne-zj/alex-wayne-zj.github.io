@@ -20,7 +20,7 @@ export default defineConfig({
         {
           text: "Coding",
           items: [
-            { text: "K8s", link: "/coding/K8s_notes" },
+            { text: "K8s", link: "/coding/K8s" },
             { text: "计算机图形学常见概念", link: "/coding/computer_graphics"},
             { text: "Golang", link: "/coding/Golang_notes"}, 
             { text: "Linux", link: "/coding/linux"},
