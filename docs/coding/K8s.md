@@ -17,7 +17,7 @@ K8s架构：
   - K8s支持多个API版本，每个版本都在不同的路径下，每次请求需要找到适当的API组和API版本，api-server在/apis下公开了OpenAPI格式的规范文档（缓存在~/.kube/cache中），这个过程为版本协商。
   - apiserver的令牌列表：x509客户端证书，bearer token
 
-![img](K8s/api-server.PNG)
+![img](K8s/api-server.png)
 
 - kube-controller-manager: 包括Node Controller（节点故障通知与响应），Job Controller（检测Job并创建Pod来运行），EndpointSlice Controller（管理服务端点切片），ServiceAccount Controller（为新命名空间创建默认的服务账号）, Replication Controller（RC，保证集群中存在指定数量的Pod副本，现在更推荐使用ReplicaSet和Deployment来管理副本）
 - kebe-scheduler: 监视新创建的未指定Node的Pod，计算出合适的Node绑定Pod
