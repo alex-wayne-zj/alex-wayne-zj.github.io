@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Alex's Blogs",
-  description: "To be or not to be?",
+  description: "",
   cleanUrls: true,
   head: [["link", { rel: "icon", href: "/logo.jpg" }]],
   themeConfig: {
@@ -51,7 +51,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/HolyDragon57/holydragon57.github.io",
+        link: "https://github.com/alex-wayne-zj/alex-wayne-zj.github.io",
       },
     ],
   },
