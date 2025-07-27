@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Alex's Blogs
-# index: true
+index: true
 hide: true
 
 # features:

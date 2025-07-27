@@ -1,3 +1,12 @@
+---
+title: Golang 笔记
+date: 2023-07-20
+cover: "./covers/test.png"
+tags: 
+  - 专业
+  - 面经
+---
+
 ## Go面经
 
 直接`var m map[string]int`的map为nil，不能添加元素
