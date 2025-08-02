@@ -2,4 +2,4 @@
 
 My blog site.
 
-> Inspired by luolei.org
+> Style inspired by luolei.org. Redesigned by myself.

@@ -13,7 +13,7 @@ export default defineConfig({
       {
         name: "keywords",
         content:
-          "Alex's Blogs,科技,程序员,影评,书评,生活,互联网,编程,前端,Vue,后端,Golang,Python,博客"
+          "Alex's Blogs,科技,程序员,前端,Vue,后端,Golang,Python,AI,电影,电视剧,书籍,音乐,生活,写作,博客,美食,摄影,播客,游戏,理财,英语,德语,日语,健身,哲学,社会学"
       },
     ],
     // add Google Analycs
@@ -44,13 +44,10 @@ export default defineConfig({
   },
   themeConfig: {
     logo: "/logo.ico",
-    nav: [
-      { text: "About", link: "https://github.com/alex-wayne-zj" },
-    ],
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/alex-wayne-zj/alex-wayne-zj.github.io",
+        link: "https://github.com/alex-wayne-zj",
       },
       {
         icon: "x",
@@ -58,8 +55,5 @@ export default defineConfig({
       },
     ],
     outlineTitle: "本文导览",
-    search: {
-      provider: 'local'
-    }
   },
 });

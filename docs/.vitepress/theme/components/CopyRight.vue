@@ -23,7 +23,7 @@ const articleLink = computed(() => {
 <template>
   <div class="text-sm">
     <hr>
-    <section>
+    <section class="space-y-2">
       <div>
         <span>作者:&nbsp;</span>
         <span>
@@ -32,7 +32,6 @@ const articleLink = computed(() => {
           </a>
         </span>
       </div>
-
       <div>
         <span>文章标题:&nbsp;</span>
         <span>
@@ -49,7 +48,6 @@ const articleLink = computed(() => {
           </span>
         </span>
       </div>
-
       <div>
         <span>文章链接:&nbsp;</span>
         <span>
@@ -58,7 +56,6 @@ const articleLink = computed(() => {
           </a>
         </span>
       </div>
-
       <div>
         <span class="mr-1 font-medium">版权说明:</span>
         <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" rel="noreferrer" target="_blank">

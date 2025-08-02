@@ -5,6 +5,7 @@ cover: "./avatar_anime.png"
 tags: 
   - 理财
   - 生活
+description: 学习理财知识的笔记
 ---
 
 ## 前言
@@ -59,3 +60,12 @@ tags:
 > 有待补充完善
 
 保证随时可取六个月应急资金——约三万
+
+```go
+func max(a, b int) {
+  if a > b {
+    return a
+  }
+  return b
+}
+```
