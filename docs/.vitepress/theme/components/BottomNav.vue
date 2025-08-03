@@ -1,6 +1,6 @@
 <template>
   <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div v-if="prev" class="group col-start-1">
+    <div v-if="prev" class="group">
       <a :href="prev.url" class="block">
         <div class="relative w-full rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all">
           <img
@@ -16,7 +16,7 @@
       </a>
     </div>
 
-    <div v-if="next" class="group col-start-2">
+    <div v-if="next" class="group md:col-start-2">
       <a :href="next.url" class="block">
         <div class="relative w-full rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all">
           <img
@@ -37,21 +37,9 @@
 <script setup>
 import { useRoute} from 'vitepress'
 import { computed } from 'vue'
+import { blogs } from './data.js'
 
 const route = useRoute()
-const modules = import.meta.glob('../../../**/*.md', { eager: true })
-
-const blogs = Object.entries(modules)
-  .filter(([_, mod]) => !mod.__pageData.frontmatter.hide)
-  .map(([path, mod]) => {
-    return {
-      title: mod.__pageData.frontmatter.title,
-      date: new Date(mod.__pageData.frontmatter.date),
-      tags: mod.__pageData.frontmatter.tags,
-      url: "../" + path.split('/')[3] + "/",
-      cover: "../../" + path.split('/')[3] + "/" + mod.__pageData.frontmatter.cover
-    }
-  }).sort((a, b) => b.date.getTime() - a.date.getTime())
 
 const currentIndex = computed(() => {
   return blogs.findIndex(blog => blog.url.slice(2) === route.path)

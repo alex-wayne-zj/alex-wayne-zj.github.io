@@ -10,18 +10,6 @@ const { Layout } = DefaultTheme
 
 <template>
   <Layout>
-    <!-- 导航栏社交链接添加豆瓣 -->
-    <template #nav-bar-content-after>
-      <a
-        href="https://www.douban.com/people/200088204"
-        target="_blank"
-        class="ml-4 flex items-center"
-        aria-label="Douban"
-      >
-        <img src="./icons/douban.svg" class="w-5 h-5" alt="Douban" />
-      </a>
-    </template>
-
     <!-- 文章顶部模块 -->
     <template #doc-before>
       <BlogHeader />

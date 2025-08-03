@@ -1,10 +1,12 @@
 ---
 title: 理财第一课
 date: 2024-07-20
-cover: "./avatar_anime.png"
+cover: "avatar_anime.png"
 tags: 
   - 理财
   - 生活
+  - test1
+  - test2
 description: 学习理财知识的笔记
 ---
 
