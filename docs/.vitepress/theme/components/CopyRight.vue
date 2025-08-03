@@ -12,7 +12,7 @@ const authorLink = computed(() => {
 });
 
 const articleGithubLink = computed(() => {
-  return `https://github.com/alex-wayne-zj/alex-wayne-zj.github.io/tree/main/docs${route.path}.md`;
+  return `https://github.com/alex-wayne-zj/alex-wayne-zj.github.io/tree/main/docs${route.path}index.md`;
 });
 
 const articleLink = computed(() => {
