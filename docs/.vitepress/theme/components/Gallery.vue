@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="max-w-7xl mx-auto px-4 py-1">
     <!-- 标签分类-->
-    <div class="flex items-center justify-center flex-wrap gap-4 mb-6">
+    <div class="flex items-center justify-center flex-wrap gap-4 mb-4">
       <div class="cursor-pointer font-semibold hover:underline select-none" @click="showTags = !showTags">
         Tags <span>{{ showTags ? '⏴' : '⏵' }}</span>
       </div>
@@ -24,7 +24,7 @@
     </div>
 
     <!-- 分页器 -->
-    <div class="mt-8 flex justify-center space-x-4 text-sm" v-if="totalPages > 1">
+    <div class="mt-4 flex justify-center space-x-4 text-sm" v-if="totalPages > 1">
       <span v-for="page in totalPages" :key="page" @click="currentPage = page" :class="[
         'cursor-pointer transition select-none',
         page === currentPage
@@ -33,6 +33,11 @@
       ]">
         {{ page }}
       </span>
+    </div>
+
+    <div class="flex items-center justify-center mt-4">
+      <span class="text-sm">Stay Sharp. Stay Gentle.</span>
+      <hr>
     </div>
   </div>
 </template>

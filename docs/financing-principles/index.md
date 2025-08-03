@@ -1,7 +1,7 @@
 ---
 title: 理财第一课
 date: 2024-07-20
-cover: "avatar_anime.png"
+cover: "cover.jpg"
 tags: 
   - 理财
   - 生活

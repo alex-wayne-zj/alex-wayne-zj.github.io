@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.VPNavBarTitle .title {
+  font-weight: bold;     
+  font-size: 1.25rem;
+}
