@@ -1,7 +1,7 @@
 ---
 title: Golang 笔记
 date: 2023-07-20
-cover: "./test.jpeg"
+cover: "./cover.jpg"
 tags: 
   - 专业
   - 面经

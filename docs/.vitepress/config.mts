@@ -4,7 +4,6 @@ export default defineConfig({
   title: "Alex's Blogs",
   description: "Stay Sharp, Stay Gentle.",
   cleanUrls: true,
-  base: "/",
   head: [
     ["link", { rel: "icon", href: "/logo.ico" }],
     // Add meta keywords for SEO
