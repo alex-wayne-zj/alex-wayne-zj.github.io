@@ -64,5 +64,7 @@ export default defineConfig({
       }
     ],
     outlineTitle: "本文导览",
+    returnToTopLabel: '返回顶部',
+    darkModeSwitchLabel: '外观',
   },
 });

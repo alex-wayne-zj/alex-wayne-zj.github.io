@@ -3,7 +3,7 @@
     <!-- 标签分类-->
     <div class="flex items-center justify-center flex-wrap gap-4 mb-4">
       <div class="cursor-pointer font-semibold hover:underline select-none" @click="showTags = !showTags">
-        Tags <span>{{ showTags ? '⏴' : '⏵' }}</span>
+        标签 <span>{{ showTags ? '⏴' : '⏵' }}</span>
       </div>
       <div class="flex flex-wrap items-center gap-4 overflow-hidden transition-all ease-in-out duration-800"
         :class="showTags ? 'opacity-100 ml-4' : 'max-w-0 max-h-0 opacity-0'">
