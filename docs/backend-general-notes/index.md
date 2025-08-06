@@ -11,9 +11,6 @@ description:
 
 # 后端面经
 
-[Golang相关知识](../Career/Backend/0_Golang.md)
-
-[K8s相关知识](../Career/Backend/0_Kubernetes.md)
 
 ## 操作系统
 

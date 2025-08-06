@@ -1,5 +1,5 @@
 # alex-wayne-zj.github.io
 
-My blog site. test
+My blog site.
 
 > Style inspired by luolei.org. Redesigned by myself.
