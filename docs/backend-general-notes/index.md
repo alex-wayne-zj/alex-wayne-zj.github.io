@@ -439,3 +439,9 @@ clone, init, status, add, commit, log, checkout, pull
 
 * git merge：保留分叉所有历史，git树上显示先分叉再合并
 * git rebase：原分支应用所有分叉分支的修改，git树上只有一条分支
+
+
+
+## K8s
+
+etcd(/etc + distributed): 一致且高可用的分布式键值存储，作为K8S的后台数据库，通常部署奇数个。完全复制，每秒一万次写入，gRPC调用，raft算法实现强一致。
