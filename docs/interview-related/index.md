@@ -37,7 +37,7 @@ description: "Like it or not. You have to be good at this."
   - Infrastructure as Code (K8s manifest)
   - 尝试定义与应用Error Code（业务层面上，方便后端定位问题所在，方便前端了解失败原因，方便实现系统监控）
   - 应用登记页面UI和流程优化，结束后实时返回CD状态（go协程启动第三方服务客户端，time库计时，channel通信，前端得到立刻返回后websocket通信，后端返回信息，使用32位随机ID: channel字典防止并行干扰）登记完发送飞书通知
-  - 项目在实现页面query和filter变量ref同步时，由于设置了<router-view :key="$route.fullPath"></router-view>，使用router.push()实现，每次都会触发页面created和mounted中的函数，基于history.replaceState()替换当前历史记录条目减少向后端的冗余请求和前端重载次数。然后基于此包装实现了页面query和filter同步的组件，并在其它页面应用
+  - 项目在实现页面query和filter变量ref同步时，由于设置了`<router-view :key="$route.fullPath"></router-view>`，使用router.push()实现，每次都会触发页面created和mounted中的函数，基于history.replaceState()替换当前历史记录条目减少向后端的冗余请求和前端重载次数。然后基于此包装实现了页面query和filter同步的组件，并在其它页面应用
     - 设置ref变量watcher，ref变化时history.replaceState()更新path
     - 设置query watcher，query变化时触发请求函数
   - Make swagger自动化（开发时容易忘记，第三方业务不清楚）：.air.toml（有问题且不一定用）、alias（此地无银）、.git/hooks编写pre-commit钩子（可行，但需要团队开发者都添加）
