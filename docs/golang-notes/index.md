@@ -412,9 +412,6 @@ func main() {
 - 不同类型指针的 `nil` 不能直接比较，赋值给 `any` 类型（即 `interface{}` 类型），它们会被转换为带有类型信息的接口值，因此不相等。
 
 
-
-
-
 ## 其他知识点
 
 ```bash
@@ -447,6 +444,63 @@ gin用validate检查tag做参数校验
 
 Middleware（通常）是一小段代码，它们接受一个请求，对其进行处理，每个中间件只处理一件事情，完成后将其传递给另一个中间件或最终处理程序，这样就做到了程序的解耦。比如说处理跨域问题
 
-context包用于在多个goroutine间安全传递上下文信息
+context包用于在多个goroutine间安全传递上下文信息、设置截止日期、同步信号、元信息
+
+主要功能是协程同步取消信号减少资源浪费：多个 Goroutine 同时订阅 ctx.Done() 管道中的消息，一旦接收到取消信号就立刻停止当前正在执行的工作。传值设计很少使用到
 
 golang主动申请内存
+
+
+
+代码风格推荐：嵌套不超4层，列数不超过120，行数不超过80，文件不超过500行
+
+const 支持自动隐式类型推断
+
+any 是空接口 interface{} 别名
+
+代码风格推荐：嵌套不超4层，列数不超过120，行数不超过80，文件不超过500行
+
+go的模块名是项目唯一标识符：go mod init [module-name]，不同于package name，它只是代码组织单位
+
+Generics 泛型编程，适应多种不同的数据类型
+
+Fuzzing 模糊测试，自动化数组随机数据，提升测试健壮性
+
+Timer是单次出发的，Ticker是周期触发的，都可以用time库结合channel实现（Ticker为周期性发送时间的channel，只能读，需要手动 Stop）
+
+Variadic Functions：允许接受任意多个参数 func sum(nums ...int)
+
+和传slice功能相同，只是有时候作为语法糖
+
+Closure：函数与相关引用环境组成的实体，捕获外部作用域变量并延长其周期
+
+遍历字符串时，for range 得到的是rune类型，传统索引得到的是 byte类型，字符串本质是只读的[]byte，rune是int32，byte是uint8，在处理一些语言时，一个byte并不能表示一个文字
+
+golang 没有enum关键字，但可以用const和iota轻松实现
+
+iota (eye-oh-tah) 来源于希腊字母
+
+golang不鼓励程序员直接操作线程和进程，golang不是专门的系统编程语言
+
+用go关键字执行函数是异步的，会单开一个协程来执行这个函数
+
+可以用select和time.After轻松实现超时管理
+
+sync.WaitGroup，Add, Done, Wait，开销小，简单易用
+
+关闭channel时，告知新数据停止接收，缓冲区未读数据还会保留，可以用for range顺序接收
+
+可以用goroutine和channel实现pool池化、rate limiter限流（加上ticker）
+
+sync/atomic库提供一些原语，比如 atomic.Uint64，支持goroutine并发访问的变量，通过Add方法添加
+
+Context：为了控制goroutine的生命周期，传递元信息和状态。核心包括Cancellation, Timeout, Values
+
+Golang Embed Directive 允许在编译时将静态文件（如HTML, CSS, 图片, 配置文件）直接嵌入到go二进制的变量中，使用特殊注释 //go:embed，可以简化部署直接访问
+
+os库支持创建临时文件
+
+## 后端通识
+
+prometheus可作为中间件自动收集请求总数，响应时间，状态码分布等指标
+

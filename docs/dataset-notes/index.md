@@ -143,6 +143,10 @@ MVCC(Multi-Version Concurrent Control): 数据库并发控制技术，用于提�
 
 * 幻读：一个事务在多次查询同一范围的数据时，由于其他事务的插入或删除操作，导致查询结果集不一致。
 
+数据库的1+N问题，join一下
+
+数据库Failure Modes：故障模式，依靠备份与恢复、事务机制、冗余和复制、日志等等
+
 **数据库隔离级别**依次提高：read uncommited, read commited(SQL Server, Oracle默认级别), repeatable read(MySQL默认级别), serializable(完全串行，很少使用)
 
 > 可重复读级别读的是同一个read view，而已提交每次会读当时生成的read view
@@ -194,7 +198,7 @@ B+Tree：B-树变体，主要用于数据库和文件系统的索引。
 * 查找和更新时间复杂度为O(logN)，查询速度稳定
 * B+Tree节点有重复元素，只有叶子结点存储数据指针，组成有序链表，便于范围查询.
 
-![](./B-Tree&B+Tree.png)
+![](./2Btrees.png)
 
 索引相关
 
