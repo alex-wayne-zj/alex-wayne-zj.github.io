@@ -9,6 +9,7 @@
         class="w-full h-full object-cover"
         :src="blog.cover"
         :alt="blog.title"
+        loading="lazy"
       />
     </div>
     <!-- 下半部分：标题和日期 -->

@@ -16,6 +16,7 @@ const coverURL = computed(() => {
       class="w-full aspect-[2.35/1] object-cover"
       :src="coverURL"
       :alt="frontmatter.title"
+      loading="lazy"
     />
     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
       <h2 class="text-xl font-semibold truncate">

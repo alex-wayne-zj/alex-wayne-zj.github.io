@@ -7,6 +7,7 @@
             class="w-full aspect-[2.35/1] object-cover"
             :src="prev.cover"
             :alt="prev.title"
+            loading="lazy"
           />
           <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
             <div class="text-sm opacity-80">上一篇</div>
@@ -23,6 +24,7 @@
             class="w-full aspect-[2.35/1] object-cover"
             :src="next.cover"
             :alt="next.title"
+            loading="lazy"
           />
           <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
             <div class="text-sm opacity-80 text-right">下一篇</div>

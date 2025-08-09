@@ -223,7 +223,7 @@ HTTP是明文传输，HTTPS通过SSL/TLS加密传输。使用非对称加密（�
 
 
 
-![](./https.webp)
+<img src="./https.webp" alt="描述" loading="lazy"/>
 
 常见对称加密算法（使用同一密钥进行加密解密，速度快适合加密大量数据）
 
