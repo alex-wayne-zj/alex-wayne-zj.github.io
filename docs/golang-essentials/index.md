@@ -1,89 +1,19 @@
 ---
-title: Golang 笔记
-date: 2023-07-20
+title: Golang知识库
+date: 2024-08-02
 cover: "./cover.jpg"
 tags: 
-  - 专业
-  - 面经
+  - 职业技能
+  - 面试
+  - Golang
+description: "Modern, Elegant, Reliable."
 ---
-
-## Go面经
-
-直接`var m map[string]int`的map为nil，不能添加元素
-
-string类型的值是二进制byte slice，只能转成[]byte后修改再转回
-
-> 关闭HTTP响应体：响应体通常是IO流，可能指向网络连接或文件，关闭响应体能避免资源泄露。同时关闭响应体也能允许连接回到连接池供后续复用。
-
-关闭HTTP响应体：在响应错误时关闭 & 手动调用defer关闭
-
-为什么要主动关闭http连接？不关闭程序可能会消耗完socket描述符
-
-Go解析json默认把数值当成float64处理
-
-从panic中恢复（必须嵌套一层函数）：defer func() {recover()}()
-
-switch选择表达式值，是if-else的替代；select选择channel，用于IO multiplexing
-
-goroutine泄露：channel阻塞或未关闭，死锁，无限循环等，go提供了工具检测泄露。避免措施比如sync.WaitGroup等待结束，利用context及时传递取消信号
-
-golang中跳出for select循环需要定义标签CODE然后break CODE
-
-go组合优于继承，内嵌结构体属性可用外层结构体.属性直接调用
-
-slice长度可变；指针，长度，容量，1024以下2倍扩容，以上1/4倍扩容，复制slice最好直接Copy。而数组list是值传递，传递拷贝无法更新。
-
-make用于构建slice, map, channel并分配内存地址
-
-打桩stubbing：模拟外部服务/组件/函数行为，简化测试环境搭建
-
-go优点：快，并行，垃圾处理
-
-...可变参数本质是数组
-
-使用管道相比互斥锁更能解决数据竞争问题
-
-interface的类型和值均为nil时才为nil
-
-垃圾回收：引用计数（不能处理循环引用）；标记清除（需要STW）；三色标记（所有白，根节点遍历灰，灰变黑，遍历黑，写屏障）
-
-GMP(Goroutine, Machine, Processor)：P由GOMAXPROCS确定，M对应真实CPU数，P有G队列，周期性将G调度到M中执行
-
-channel通信本身异步安全：**不要通过共享内存来通信（加锁），而是通过通信来共享内存（管道）**
-
-rune类型等价UTF-8，相当于Unicode字符
-
-空struct{}不占内存空间，可用于占位符（map的值），或者通信（channel），不包含字段只包含方法的结构体。
-
-kafka：开源流处理平台，为处理实时数据提供统一/高吞吐/低延迟的发布/订阅平台
-
-Go内存管理主要指堆内存管理：分配内存块，回收内存块。每个block包括size, used, next（链表的next）, data，align。释放内存实质是标记未使用block，处理内存碎片则是合并连续未使用的内存块。
-
-为了提高多线程申请内存的效率，TCMalloc做法是位每个线程预分配一块缓存（无需加锁）
-
-Page(8kB), Span, mcache（对每个P）, mcentral（所有线程共享的缓存，需要加锁访问），mheap
-
-Mutator（用户程序）向Allocator从Heap中申请空间，Collector自动回收Heap中的内存
-
-Go内存分配：Tiny对象（1-16 Byte，不包含指针），小对象（16Byte - 32 kB），大对象（>32kB），Tiny和小对象在mcache分配，大对象在mheap分配。mache不够了向mcentral申请，mcentral不够了向mheap申请。
-
-reflection：程序运行时访问，检测和修改自身状态或行为的一种能力。
-
-内存逃逸：某些变量我们在函数运行后仍想使用，这个变量就需要从栈转移到堆。
-
-逃逸分析：程序在编译阶段分析代码哪些变量在栈上分配哪些变量在堆上分配。
-
-reslice通过指针移动完成，和原slice共享底层数据
-
-channel源码分析：buf(存储数据的缓冲循环链表)，sendx(send index), recvx(recv index), lock, recvq(等待接收数据goroutine队列), sendq
-
-Go的一些设计：map遍历顺序会有意打乱。fmt.Println()涉及大量反射调用，会造成变量从栈逃逸到堆中，逃逸到堆后空struct默认指向zerobase地址，使之相等。没逃逸则Go代码优化会让它不相等
 
 ## 核心机制
 
 golang语言特点（对比其他语言）
 
-* 简洁、高级语言、协程天然支持多并发（云原生）、C++般的性能、生态堪比Java / Python
+* 简洁、高级语言、协程天然支持多并发（云原生）、C++般的性能、支持垃圾回收、生态堪比Java / Python
 * 多线程方面：C++使用系统级别的原生线程API；Python通过threading创建多线程，但受制于GIL，同一时刻只能有一个线程运行；Golang通过用户级线程goroutine实现并行
 
 
@@ -100,14 +30,29 @@ golang语言特点（对比其他语言）
 
 go垃圾回收
 
-* （已不用）标记清除：从根对象出发遍历标记所有可达对象，GC扫描堆清除未标记对象。缺点是需要STW(Stop The World)；
+GC是很多Go服务的性能瓶颈，本身也在优化，有时升级Go版本就能解决
+
+* （已不用）标记清除：从根对象出发遍历标记所有可达对象，GC扫描堆清除未标记对象。缺点是需要STW(Stop The World)，一次数百毫秒；
 * （目前）三色标记法+混合写屏障：并发执行、优先回收生命周期短的
   * 三色标记：白色（不确定，开始STW加入所有对象）黑色（存活）灰色（存活待处理）。取出一个灰色对象（最开始是根对象），遍历子对象标记为灰色，将取出对象改为黑色。循环往复，最后剩余白色对象需要清理。
-    * 缺点在于用户可能会修改对象引用，因此go使用写屏障技术，对象新增或更新时为灰色
+    * 缺点在于用户可能会修改对象引用，因此go使用写屏障技术，对象新增或更新时为灰色，但只应用在堆上
   * 混合写屏障（保持栈和堆上的变化正确）
     * GC开始时将栈上对象标记为黑色，新建栈对象也标记成黑色（无需STW，减少GC停顿时间）
     * 用户在GC期间堆上新建、修改、删除引用的对象着色为灰色
     * 确保黑色对象不引用白色对象
+* 扫描比回收更消耗CPU：堆内存达到阈值（可改触发基数和触发条件）；定时触发；手动触发
+  * 火焰图中gcBgMarkWorker占CPU超过10%一般就需要优化了
+  * GC优化方向
+    * 减少堆对象的分配（GC时要递归扫描所有对象，栈会在函数结束后自动回收）
+    * 小结构体用值而不是指针
+    * 用匿名函数替代闭包（会延长局部变量生命周期）
+    * bigcache存储大对象（[]byte类型只会扫描一次）
+    * 用池化优化内存分配
+    * 用原子操作选择性替代锁
+    * 慎用深度拷贝和反射
+    * 将任务主动打散分配到不同机器中
+    * 控制回包大小和数据优先级
+
 
 
 
@@ -130,12 +75,13 @@ Go中返回局部变量指针是否安全
 
 * 进程上下文切换负担重，内存使用重
 * 协程无需进入内核态，默认栈小，自动收缩没有栈溢出风险
+* golang不鼓励程序员直接操作线程和进程，golang不是专门的系统编程语言
 
 
 
 为什么会有协程泄露？
 
-* 协程创建之后没有被释放，用waitGroup，context设置超时
+* 协程创建之后没有被释放，用waitGroup，context设置超时。go提供了工具检测泄露。
 * 接受阻塞、发送阻塞、竞争资源导致死锁、创建协程后未回收。使用GOMAXPROCS控制协程数量（过大会引起线程的频繁切换）
 
 
@@ -230,6 +176,7 @@ panic
 
 * 如何进行字符串的高效拼接？
 * +会创建新字符串，一般使用strings.Builder、bytes.Buffer和strings.Join。前者使用可变缓冲区，后者将字符串切片连接起来
+* 字符串拼接性能：strings.Builder = strings.Join > + > fmt.Sprintf
 
 
 
@@ -269,12 +216,12 @@ func main() {
 
 
 * select特点
-* 允许goroutine同时等待多个channel，任何一个就绪都可以执行（随机执行）
+* 允许goroutine同时等待多个channel，任何一个就绪都可以执行（随机执行，和 map 一样）
 
 
 
 * sync特点
-* 多线程同步工具，包括Mutex, RWMutex, Map, Atomic, Pool, Cond, WaitGroup
+* 多线程同步工具，包括Mutex, RWMutex, Map, Atomic, Pool, Cond, WaitGroup, atomic.Uint64（支持goroutine并发访问的变量，通过Add方法添加）
 
 
 
@@ -312,7 +259,7 @@ func main() {
 
 
 * 什么是rune
-* rune为32bit，为Unicode。string遍历时要么为rune，要么为byte
+* rune为32bit，为Unicode。遍历字符串时，for range 得到的是rune类型，传统索引得到的是 byte类型，字符串本质是只读的[]byte，rune是int32，byte是uint8，在处理一些语言比如中文时，一个byte并不能表示一个文字
 
 
 
@@ -327,7 +274,7 @@ func main() {
 
 
 * go枚举值
-* 用iota表示（从0开始）
+* 用iota表示（从0开始）golang 没有enum关键字（iota (eye-oh-tah) 来源于希腊字母）
 
 
 
@@ -391,7 +338,7 @@ default:
 
 
 * 闭包
-* 捕获创建时作用域中变量，延长生命周期，通过匿名函数实现
+* 捕获创建时作用域中变量，延长外部作用域变量的生命周期，通过匿名函数实现
 * 常用于延迟执行defer，函数工厂，回调函数
 
 ```go
@@ -410,9 +357,10 @@ func main() {
 - `for range` 遍历 `[]struct` 时，临时变量是结构体的值拷贝，修改不会影响原始切片。
 - 临时变量在每次迭代中会被重用，而不是重新分配，因此会指向同一个地址
 - 不同类型指针的 `nil` 不能直接比较，赋值给 `any` 类型（即 `interface{}` 类型），它们会被转换为带有类型信息的接口值，因此不相等。
+- reslice：通过指针移动完成，和原slice共享底层数据
 
 
-## 其他知识点
+## 其他杂项
 
 ```bash
 # 常见的golang命令行工具
@@ -432,35 +380,21 @@ go get github.com/example/package
 go install example.com/mymodule
 ```
 
-
-
 go get用于下载远程模块到$GOPATH/pkg/mod目录中
 
 go install用于编译并安装本地go模块到$GOPATH/bin中
 
+go的模块名是项目唯一标识符：go mod init [module-name]，不同于package name，它只是代码组织单位
+
 gin用validate检查tag做参数校验
-
-什么是中间件？
-
-Middleware（通常）是一小段代码，它们接受一个请求，对其进行处理，每个中间件只处理一件事情，完成后将其传递给另一个中间件或最终处理程序，这样就做到了程序的解耦。比如说处理跨域问题
 
 context包用于在多个goroutine间安全传递上下文信息、设置截止日期、同步信号、元信息
 
 主要功能是协程同步取消信号减少资源浪费：多个 Goroutine 同时订阅 ctx.Done() 管道中的消息，一旦接收到取消信号就立刻停止当前正在执行的工作。传值设计很少使用到
 
-golang主动申请内存
-
-
-
 代码风格推荐：嵌套不超4层，列数不超过120，行数不超过80，文件不超过500行
 
 const 支持自动隐式类型推断
-
-any 是空接口 interface{} 别名
-
-代码风格推荐：嵌套不超4层，列数不超过120，行数不超过80，文件不超过500行
-
-go的模块名是项目唯一标识符：go mod init [module-name]，不同于package name，它只是代码组织单位
 
 Generics 泛型编程，适应多种不同的数据类型
 
@@ -468,39 +402,22 @@ Fuzzing 模糊测试，自动化数组随机数据，提升测试健壮性
 
 Timer是单次出发的，Ticker是周期触发的，都可以用time库结合channel实现（Ticker为周期性发送时间的channel，只能读，需要手动 Stop）
 
-Variadic Functions：允许接受任意多个参数 func sum(nums ...int)
+Golang Embed Directive 允许在编译时将静态文件（如HTML, CSS, 图片, 配置文件）直接嵌入到go二进制的变量中，使用特殊注释 `//go:embed`，可以简化部署直接访问
 
-和传slice功能相同，只是有时候作为语法糖
+常见的编解码方式：sonic, pb, json, yaml
 
-Closure：函数与相关引用环境组成的实体，捕获外部作用域变量并延长其周期
+> sonic 是字节开源的高性能golang json编解码库，比官方快2-5倍，且接口兼容，大量使用零拷贝技术，令人惊艳的卓越
 
-遍历字符串时，for range 得到的是rune类型，传统索引得到的是 byte类型，字符串本质是只读的[]byte，rune是int32，byte是uint8，在处理一些语言时，一个byte并不能表示一个文字
+Golang官方性能分析工具：
 
-golang 没有enum关键字，但可以用const和iota轻松实现
-
-iota (eye-oh-tah) 来源于希腊字母
-
-golang不鼓励程序员直接操作线程和进程，golang不是专门的系统编程语言
-
-用go关键字执行函数是异步的，会单开一个协程来执行这个函数
+* pprof：profiling，分析CPU占用，内存分配，goroutine信息，阻塞情况，可以生成火焰图
+* trace：全链路事件追踪工具，查看并发、调度过程、时序信息，生成时间线
 
 可以用select和time.After轻松实现超时管理
 
-sync.WaitGroup，Add, Done, Wait，开销小，简单易用
-
-关闭channel时，告知新数据停止接收，缓冲区未读数据还会保留，可以用for range顺序接收
-
 可以用goroutine和channel实现pool池化、rate limiter限流（加上ticker）
 
-sync/atomic库提供一些原语，比如 atomic.Uint64，支持goroutine并发访问的变量，通过Add方法添加
 
-Context：为了控制goroutine的生命周期，传递元信息和状态。核心包括Cancellation, Timeout, Values
 
-Golang Embed Directive 允许在编译时将静态文件（如HTML, CSS, 图片, 配置文件）直接嵌入到go二进制的变量中，使用特殊注释 //go:embed，可以简化部署直接访问
 
-os库支持创建临时文件
-
-## 后端通识
-
-prometheus可作为中间件自动收集请求总数，响应时间，状态码分布等指标
 
