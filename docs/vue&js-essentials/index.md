@@ -3,10 +3,10 @@ title: Vue 和 JS 笔记
 date: 2022-03-14
 cover: "./cover.jpg"
 tags: 
-  - 专业
-  - 面经
+  - 职业技能
+  - 面试
   - 前端
-description: "Like it or not. You have to be good at this."
+description: "My initial mentor to the software world."
 ---
 
 # Vue面经

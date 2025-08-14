@@ -1,12 +1,10 @@
 ---
-title: 面试相关杂项
-date: 2022-06-04
+title: 面试临场指南
+date: 2022-10-18
 cover: "./cover.jpg"
 tags: 
-  - 专业
-  - 面经
-  - 数据库
-description: "Like it or not. You have to be good at this."
+  - 面试
+description: "You are your narrative."
 ---
 
 # 华顺信安
@@ -118,6 +116,10 @@ RPC 微服务开发
 
 目前涉及的技术广度已经够了，需要精雕细琢在深度下功夫
 
-## 自我介绍
+## 自我介绍（1min）
 
-## STAR 介绍法
+姓名，本硕专业学校，研究方向，多端实习经历，多个领域涉猎。
+
+主要技术栈，目标岗位相关经历
+
+表达想去公司的意愿

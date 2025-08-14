@@ -1,12 +1,10 @@
 ---
-title: 何处生活
-date: 2022-11-03
+title: 何以为家
+date: 2025-06-17
 cover: "./cover.jpg"
 tags: 
-  - 面试
-  - 后端
-  - 职业技能
-description: "More than RESTful/RPC API."
+  - 生活
+description: "You can always choose your environment."
 ---
 
 # **工作****城市****综合****评估**

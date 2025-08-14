@@ -1,13 +1,11 @@
 ---
-title: 理财第一课
-date: 2024-07-20
+title: 理财知识库
+date: 2023-01-16
 cover: "cover.jpg"
 tags: 
   - 理财
   - 生活
-  - test1
-  - test2
-description: 学习理财知识的笔记
+description: "Your salary can’t buy you the freedom of wealth."
 ---
 
 ## 前言

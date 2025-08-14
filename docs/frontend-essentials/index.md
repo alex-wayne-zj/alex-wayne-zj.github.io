@@ -1,12 +1,12 @@
 ---
-title: 前端通识
-date: 2022-06-04
+title: 前端知识库
+date: 2022-04-02
 cover: "./cover.jpg"
 tags: 
-  - 专业
-  - 面经
+  - 职业技能
+  - 面试
   - 前端
-description: "Like it or not. You have to be good at this."
+description: "The first glance at software engineering."
 ---
 
 # HTML

@@ -1,10 +1,10 @@
 ---
-title: LeetCode刷题笔记
+title: LeetCode笔记
 date: 2022-02-18
 cover: "./cover.jpg"
 tags: 
-  - 专业
-  - 面经
+  - 职业技能
+  - 面试
 description: "Like it or not. You have to be good at this."
 ---
 
@@ -82,6 +82,7 @@ description: "Like it or not. You have to be good at this."
 * 5L和6L的桶精确装4L水：小桶往大桶填水
 * 25匹马，5个赛道，最少需要比赛几次才能知道前3名：5+1+1
 * 13个石头一个比较重，天平测量几次：最多三次
+* 最佳聚会地点：中位数
 
 ## 递归、剪枝与回溯
 
