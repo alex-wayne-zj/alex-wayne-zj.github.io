@@ -14,7 +14,7 @@ My blog site.
 
 整理完的博客
 
-* backend-essentials
+* backend-essentials✅ （估计 K8s 未来会单开一篇）
 * dataset-notes
 * golang-notes
 * leetcode-notes
