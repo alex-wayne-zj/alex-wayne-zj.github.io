@@ -7,7 +7,7 @@
       </div>
       <div class="flex flex-wrap items-center gap-4 overflow-hidden transition-all ease-in-out duration-800"
         :class="showTags ? 'opacity-100 ml-4' : 'max-w-0 max-h-0 opacity-0'">
-        <span v-for="tag in allTags" :key="tag.name" @click="selectedTag = tag.name" :class="[
+        <span v-for="tag in allTags" :key="tag.name" @click="selectedTag = tag.name; currentPage=1" :class="[
           'cursor-pointer text-sm transition',
           selectedTag === tag.name
             ? 'underline underline-offset-4 font-semibold'

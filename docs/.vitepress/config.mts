@@ -30,18 +30,6 @@ export default defineConfig({
       gtag('config', 'G-5C9535TJJS');`
     ]
   ],
-  // transformHead: ({ pageData }) => {
-  //   const head: HeadConfig[] = [];
-  //   const title = pageData?.frontmatter?.title || "Alex's Blogs";
-  //   const description = pageData?.frontmatter?.description || "Stay Sharp, Stay Gentle.";
-  //   const cover = pageData?.frontmatter?.cover || "/logo.ico";
-
-  //   head.push(["meta", { property: "og:title", content: title }]);
-  //   head.push(["meta", { property: "og:description", content: description }]);
-  //   head.push(["meta", { property: "og:image", content: cover }]);
-
-  //   return head;
-  // },
   transformPageData: (pageData) => {
     pageData.frontmatter.head ??= [];
     const title = pageData?.frontmatter?.title || "Alex's Blogs";

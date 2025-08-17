@@ -151,16 +151,10 @@ description: "Like it or not. You have to be good at this."
 ## 图
 
 * BFS & DFS
-* 拓扑排序：课程表先修课程
-* 并查集
-* 最小生成树
-* 最短路径
-* 滑动窗口专题
-  * 长度最小的数组：记录小于target的最短数组，中途记录最小值
-* 二分查找专题
-* 双指针专题
-  * 盛水最多的容器：头尾指针，小者移动（剪枝）
-* 前缀和专题
+* 拓扑排序：课程表先修课程，类似 BFS
+* 并查集：判断两个点是否属于同一个集合，选一个 rank 最大的点当老大。检测成环和连通性
+* 最小生成树：Prim 算法（以某点为起点贪婪选小边）；Kruskal 算法（贪婪选小边，判断是否成环，点是否已存在点集中）
+* 最短路径：Dijkstra 算法（不断添加可达顶点）和 Floyd-Warshall 算法（三重循环三角形）
 
 Mac Golang version: 1.23.6
 
@@ -281,6 +275,9 @@ func modifySlice(s *[]int) {
 }
 // 快速排序
 func quicksort(a []int, low, high) {
+  if low > high {
+    return
+  }
   num := a[low]
   i, j := low, high
   for i < j {
@@ -343,3 +340,13 @@ func main() {
 	fmt.Println(total)
 }
 ```
+
+## 真题 - 字节跳动
+
+矩阵某个点到所有点距离最小和的点：中位数。
+
+## 真题 - 拼多多
+
+输入 n, m, a0, a1, ...an-1，任选两个 a 使它们的和为 m 的倍数，求组合数量（余一个大数）
+
+输入 n, m, s0, d0, s1, d1, ...sn-1, dn-2，求满足区间和大于 m 的最小 d 值
