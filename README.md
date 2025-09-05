@@ -15,10 +15,15 @@ My blog site.
 * where-to-settle-down✅
 * build-my-blog-site-with-vitepress✅
 * basic-financial-knowledge✅
-* agent-notes✅
-* dataset-notes
-* golang-notes
+* ai-agent-notes✅
+* interview-presentation-guide✅
+* java-essentials✅
+* vue&js-essentials✅
+* frontend-essentials✅
+* dataset-notes✅
+* golang-essentials✅
 * leetcode-notes（等待慢慢复习完善）
+* book-show-music-image-collection
 
 待写
 
@@ -28,3 +33,6 @@ My blog site.
 * 书影音图收藏标准
 * AI CV 方向基本用途
 * AI 开源 tools 总结
+* 迁移腾讯文档
+* 备忘录中部分文档
+* 迁移 Life 中 temp 文档

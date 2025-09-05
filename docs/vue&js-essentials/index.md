@@ -9,7 +9,7 @@ tags:
 description: "My initial mentor to the software world."
 ---
 
-# Vue面经
+## Vue
 
 * 详解Vue的双向绑定
 
@@ -64,7 +64,8 @@ vue的全局状态管理库，单例模式。组件中使用store实例的state�
 
 
 * 如何监听vuex数据变化
-* watch和store.subscribe()
+
+watch和store.subscribe()
 
 
 
@@ -75,7 +76,8 @@ vue的全局状态管理库，单例模式。组件中使用store实例的state�
 
 
 * router-link和router-view
-* 分别负责路由导航（a标签+path）和组件渲染（占位组件可嵌套）
+
+分别负责路由导航（a标签+path）和组件渲染（占位组件可嵌套）
 
 
 
@@ -96,6 +98,16 @@ vue的全局状态管理库，单例模式。组件中使用store实例的state�
 DOM更新是异步执行的，且有一个队列缓冲在同一事件循环中发生的所有数据变更，nextTick方法会在队列中加入一个回调函数
 
 
+* 说说对Vue响应式的理解
+
+响应式：数据变化被检测到并对这种变化做后续操作（主要是视图渲染）
+
+MVVM中连接Model和View的关键机制View-Model层
+
+Vue3通过ES6的Proxy代理要响应变化的数据
+
+## JS
+
 
 * JS的事件循环机制是什么
 
@@ -109,14 +121,33 @@ DOM更新是异步执行的，且有一个队列缓冲在同一事件循环中�
   * 常见的宏任务包括：`setTimeout`、`setInterval`、`I/O 操作`、`UI 渲染` 等
   * 宏任务会在当前调用栈清空后执行。
 
+> stack存块环境，queue存任务列表，heap存引用类型本体
+
 事件循环机制的核心是不断地检查调用栈和任务队列：执行同步代码，执行微任务，执行宏任务，UI渲染
 
+null代表无，undefined代表有值但未初始化
 
+JS变量用typeof和instanceof判断类型
+       
+引用类型包括Object / Array / Function / RegExp / Date / 基本类型包装应用类型(String / Number / Boolean) / 单体内置对象(Global / Math)
 
-* 说说对Vue响应式的理解
+JS DOM常见API
 
-响应式：数据变化被检测到并对这种变化做后续操作（主要是视图渲染）
+- document.createElement
+- element.appendChild
+- document.getElementById / TagName
+- node.parentNode.removeChild()
 
-MVVM中连接Model和View的关键机制View-Model层
+事件冒泡和事件捕获：从最内层div到最外层div的顺序触发。事件捕获，顺序相反。可以用e.stopPropagation()阻止冒泡或者window.event.cancelBubble = true
 
-Vue3通过ES6的Proxy代理要响应变化的数据
+window指整个窗体，document指整个HTML文档页面，后者是前者的子对象
+       
+事件委托或者事件代理：减少DOM的事件处理程序，减少内存占用。利用事件冒泡，指定一个事件处理程序处理某一类型的所有事件，event.target或者event.srcElement可以获取事件真正的目标节点dom
+
+闭包包括函数和函数内部能访问的变量，常常呈现为函数的嵌套
+
+call / apply / bind都是用来重定义this对象，第二个参数用来传参数，call分开传，apply做数组传，bind返回函数
+
+原型链：显式原型prototype，隐式原型__proto\_\_，JS 的继承
+       
+对于DOM节点，Attribute是DOM节点自带属性，Property是DOM对象附加属性
