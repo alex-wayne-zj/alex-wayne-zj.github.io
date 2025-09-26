@@ -21,9 +21,11 @@ golang语言特点（对比其他语言）
 
 * Golang运行时（runtime）用于管理 **协程（goroutine）** 的核心调度机制（天然支持高并发）：协程、线程和调度器/处理器(Goroutines, Machine/Thread, Processor)。协程是用户级轻量线程，线程是运行goroutine的实体，P有一个协程队列
   * G添加到P队列中（如果都满了添加到全局队列中），P取G绑定M执行，阻塞时换绑M到其他G，队列为空时从其他P中拿一半G，满了会分一半G到全局队列
-  * 最多有GOMAXPROCS个活跃线程能运行，默认为内核数
-* **自旋线程**：处于运行状态但是没有可执行goroutine的线程
-* 没有P层锁竞争会影响性能
+    * M 寻找可运行 G 的顺序：本地队列、全局队列、netpoll 网络轮询器、其他本地队列
+  * 某一时刻最多有GOMAXPROCS个活跃线程能运行，默认为内核数（P 数量）
+  * M 按需创建，默认为 10000 个
+  * m0 为主系统线程，后续和其他 M 没区别；g0 为 M 的调度线程
+* **自旋线程**：处于运行状态但是没有可执行goroutine的线程，循环等待，不阻塞减少上下文切换
 * goroutine数据结构：stack(2kb), pc, status, 上下文
 
 **Go垃圾回收**
@@ -38,22 +40,16 @@ GC是很多Go服务的性能瓶颈，本身也在优化，有时升级Go版本�
     * GC开始时将栈上对象标记为黑色，新建栈对象也标记成黑色（无需STW，减少GC停顿时间）
     * 用户在GC期间堆上新建、修改、删除引用的对象着色为灰色
     * 确保黑色对象不引用白色对象
-* 扫描比回收更消耗CPU：堆内存达到阈值（可改触发基数和触发条件）；定时触发；手动触发
+* 垃圾回收过程中扫描比回收更消耗CPU，触发条件：堆内存达到阈值（可改触发基数和触发条件）；定时触发；手动触发
   * 火焰图中gcBgMarkWorker占CPU超过10%一般就需要优化了
-  * GC优化方向
-    * 减少堆对象的分配（GC时要递归扫描所有对象，栈会在函数结束后自动回收）
-    * 小结构体用值而不是指针
-    * 用匿名函数替代闭包（会延长局部变量生命周期）
-    * bigcache存储大对象（[]byte类型只会扫描一次）
-    * 用池化优化内存分配
-    * 用原子操作选择性替代锁
-    * 慎用深度拷贝和反射
-    * 将任务主动打散分配到不同机器中
-    * 控制回包大小和数据优先级
+  * GC优化方向：减少堆对象的分配（GC时要递归扫描所有对象，栈会在函数结束后自动回收）
+
+GC 关注指标：CPU 利用率，GC 停顿时间，GC 停顿频率，GC 可扩展性
 
 Go中返回局部变量指针是否安全
 
-* 安全，go会进行逃逸分析（不同于C++）将指针分配到堆区，避免内存泄漏，堆区内存由垃圾回收机制处理，开发者无需担心
+* 安全，go会在编译时进行逃逸分析（不同于C++）将指针分配到堆区，避免内存泄漏，堆区内存由垃圾回收机制处理，开发者无需担心
+* 其他逃逸情况：闭包，大对象，interface 类型
 
 > golang中什么变量会分配到栈区，什么变量会分配到堆区
 >
@@ -70,8 +66,8 @@ Go中返回局部变量指针是否安全
 
 为什么会有协程泄露？
 
-* 协程创建之后没有被释放，用waitGroup，context设置超时。go提供了工具检测泄露。
 * 接受阻塞、发送阻塞、竞争资源导致死锁、创建协程后未回收。使用GOMAXPROCS控制协程数量（过大会引起线程的频繁切换）
+* 其他泄露：channel 未关闭、slice 或 map 过大、定时器未停止
 
 goroutine堵塞情况
 
@@ -91,28 +87,38 @@ Go面向对象是如何实现的？
 * 多态：通过interface实现，赋值interface为对象
   * 任何实现了接口定义方法的类型都隐式实现了该接口（只有方法没有属性）
 
+interface 底层原理
+
+* 两种数据结构：eface，空接口实现，包含 _type 指针和 data 指针；iface，带方法接口实现，itab 存储接口类型和方法表
+
+类型转换和类型断言
+
+* 类型转换是在编译期间强制转换，失败则无法编译
+* 类型断言是运行期间动态检查，一般通过 ok 判断是否成功
+
+当且仅当动态类型和动态值都为 nil 时，interface 才等于 nil
+
+goroutine 调度时，是根据运行时长抢占式调度的
+
 反射特点
 
 * 运行时检查变量的值和类型，`package reflect`，常用于泛型编程，动态调用对象方法，获取结构体字段信息进行数据库映射（即解析结构体中tag）。会带来一定的性能开销并影响代码可读性
 
-golang内存分配机制
+golang内存分配机制：
 
-* 微型对象（小于16B）：由mcache.tiny分配
-* 小对象：由mcache和mspan管理
-* 大对象（大于32KB）：在堆中分配
-
-> mcache（每个M的本地缓存，如已满则申请mcentral）、mcentral（全局中心缓存）、mheap（堆内存管理者，以span为一页）
->
-> mcache中内存申请和释放无锁，mcentral和mheap中锁粒度小
+* 多级缓存：mcache（每个M的本地缓存，如已满则申请mcentral）、mcentral（全局中心缓存）、mheap（堆内存管理者，以mspan为一页 减少外部碎片），操作系统内存
+* 不同大小的对象对应不同的 span（微型对象（从 mcache.tiny 分配）、小对象（优先从 mcache 分配，然后 mcentral, mheap）、大对象（从 mheap 分配））
+* mcache中内存申请和释放无锁，mcentral和mheap中锁粒度小
 
 go没有this指针
 
 * 方法归属的对象显式传递
+* 值或指针均可调用方法（编译器自动转换），值方法内修改的是副本
 
-Go的channel（基于CSP思想 Communicating Sequential Process，通信顺序过程）
+Go的channel（基于CSP思想 Communicating Sequential Process，通信顺序过程，通过通信共享内存，而不是通过共享内存通信）
 
 * 数据传输、可缓冲、单向、指定数据类型、无数据时阻塞、可关闭、线程安全
-* golang读已关闭channel，读完缓冲数据后，会返回对应类型零值和false
+* golang读已关闭channel，读完缓冲数据后，会返回对应类型零值和false；golang 写已关闭通道或重复关闭通道会直接 panic
 * 数据结构：循环队列（实际就是固定大小数组+发送接收指针），锁，发送阻塞协程队列，接收阻塞协程队列，关闭标志。
 
 > 循环队列好处：固定内存分配、缓存局部性、插入删除O1
@@ -129,7 +135,7 @@ channel死锁场景
 
 若干个goroutine，有一个panic了怎么办？
 
-* 全部退出。若不想，则使用recover()捕获panic修复,panic会逐层展开调用栈，recover会捕获panic信号，程序执行panic下一行
+* 全部退出。若不想，则使用recover()捕获panic修复，panic会逐层展开调用栈，recover会捕获panic信号，程序执行panic下一行
 
 golang是强类型语言，不允许隐式类型转换
 
@@ -173,6 +179,7 @@ func main() {
 // defer1
 // return 0
 // Go会创建一个临时变量保存返回值
+// 有名返回 defer 的修改才生效
 ```
 
 inferface特点
@@ -181,6 +188,7 @@ inferface特点
 
 select特点
 * 允许goroutine同时等待多个channel，任何一个就绪都可以执行（随机执行，和 map 一样）
+* 两轮扫描：第一轮遍历如果就绪则直接执行；第二轮把当前goroutine加入到所有channel的发送或接收队列中，然后睡眠让出 CPU等待唤醒
 
 sync特点
 * 多线程同步工具，包括Mutex, RWMutex, Map, Atomic, Pool, Cond, WaitGroup, atomic.Uint64（支持goroutine并发访问的变量，通过Add方法添加）
@@ -190,21 +198,22 @@ sync.Cond
 
 sync.Map
 * 并发安全哈希表，尤其适合读多写少的场景，避免传统map+mutex的性能瓶颈
-* 读写分析：read map是无锁只读Load的快照；dirty map加锁后执行写操作Store / Delete；先查read再查dirty，标记 read map 过期然后加锁合并
+* 读写分离，空间换时间：read map是无锁只读快照；dirty map加锁后执行写操作Store / Delete（标记 expunged，nil 是真删除）；未命中次数超过阈值时，会讲 dirty 提升为新的 read，新 dirty 写入时按需创建
 
 sync.Pool
-* 保存临时对象池，核心是为了**减少高并发下内存分配和垃圾回收压力**。比如在处理HTTP请求时将bytes.Buffer / context池化
+* 保存临时对象池，核心是为了**减少高并发下内存分配和垃圾回收压力**。比如在处理HTTP请求时将bytes.Buffer / context池化，池负责管理对象生命周期、并发安全和控制数量
 
 sync.RWMutex
 * 机制和MySQL的S Lock和X Lock行为一致。读锁时允许所有线程获取读锁读，彼此间可共存；写锁时只允许一个线程读写
 
 sync.Mutex / 互斥锁的两种模式
-* 互斥锁：一个goroutine获取到后，其他goroutine必须等待
-* normal：新请求锁的goroutine更容易获取锁
-* starvation：公平排队
+* 互斥锁：一个goroutine获取到后，其他goroutine必须等待。通过原子操作和信号量（阻塞和唤醒）实现
+* normal：新请求锁的goroutine更容易获取锁（极短自旋）
+* starvation：公平排队（超过 1ms），防止饥饿
 
 sync.Atomic底层实现
 * 采用CAS(CompareAndSwap)，CPU级别的原子性操作
+* 原子操作是 CPU 实现的，针对单个数据；锁是语言实现的，保护临界区，性能更差
 
 什么是rune
 * rune为32bit，为Unicode。遍历字符串时，for range 得到的是rune类型，传统索引得到的是 byte类型，字符串本质是只读的[]byte，rune是int32，byte是uint8，在处理一些语言比如中文时，一个byte并不能表示一个文字
@@ -248,6 +257,22 @@ goroutine操作函数
 * 检查接口实际存储值的类型，`value, ok := interfaceValue.(Type)`，如果没有ok断言失败程序会panic
 * 用type switch更合理
 
+Golang 多返回值是如何实现的
+* 预计算返回值大小在 caller 调用栈上预留空间然后复制
+
+unsafe.Pointer
+* 无类型的通用指针，可以转换成任意类型，并做指针运算（转为 uintptr 指针数值做算数运算）
+* unsafe.Pointer指向对象有GC保护，uintptr没有
+
+golang map 为什么要刻意随机
+* 扩容后键值对位置发生变化，防止开发者写出不鲁棒的代码
+
+map 的 key 为什么要是可比较的
+* 哈希冲突时判断
+
+map 删除 key 时会立刻释放空间吗
+* 不会，标记空闲方便 GC 回收，clear 时才释放
+
 ```go
 switch v := i.(type) {
 case T1:
@@ -274,10 +299,14 @@ func main() {
 }
 ```
 
+WaitGroup 是如何实现的
+- 原子计数器和信号量协作
+- Add, Done, Wait
+
 - `for range` 遍历 `[]struct` 时，临时变量是结构体的值拷贝，修改不会影响原始切片。
 - 临时变量在每次迭代中会被重用，而不是重新分配，因此会指向同一个地址
+   - Go1.23后迭代临时变量内存地址会发生改变
 - 不同类型指针的 `nil` 不能直接比较，赋值给 `any` 类型（即 `interface{}` 类型），它们会被转换为带有类型信息的接口值，因此不相等。
-- reslice：通过指针移动完成，和原slice共享底层数据
 
 ## 其他杂项
 
@@ -307,7 +336,15 @@ go的模块名是项目唯一标识符：go mod init [module-name]，不同于pa
 
 gin用validate检查tag做参数校验
 
-context包用于在多个goroutine间安全传递上下文信息、设置截止日期、同步信号、元信息。属性：Deadline, Done, Err, Value. 
+context包用于在多个goroutine间安全传递上下文信息、设置截止日期、同步取消信号、传递请求元信息。属性：Deadline, Done, Err, Value. 
+
+context.Value 是链式查找
+
+Context 的取消方式：
+
+* 主动取消：WithCancel 手动调用 Cancel 函数
+* 超时取消：WithTimeout / WithDeadline 自动调用 Cancel
+* 级联取消：父 context 取消，子 context 自动取消
 
 主要功能是协程同步取消信号减少资源浪费：多个 Goroutine 同时订阅 ctx.Done() 管道中的消息，一旦接收到取消信号就立刻停止当前正在执行的工作。传值设计很少使用到
 
@@ -319,7 +356,7 @@ Generics 泛型编程，适应多种不同的数据类型
 
 Fuzzing 模糊测试，自动化数组随机数据，提升测试健壮性
 
-Timer是单次出发的，Ticker是周期触发的，都可以用time库结合channel实现（Ticker为周期性发送时间的channel，只能读，需要手动 Stop）
+Timer是单次触发的，Ticker是周期触发的，都可以用time库结合channel实现（Ticker为周期性发送时间的channel，只能读，需要手动 Stop）
 
 Golang Embed Directive 允许在编译时将静态文件（如HTML, CSS, 图片, 配置文件）直接嵌入到go二进制的变量中，使用特殊注释 `//go:embed`，可以简化部署直接访问
 
@@ -350,6 +387,6 @@ sonic库为什么快：
 
 > 红黑树一般二叉，通过旋转自平衡，插入删除查找都是logN，根节点和叶子节点为黑色，路径包含相同数量黑色节点，存储效率不如B+树（N叉，一般3-4层）
 
-Go单例模式：sync.Once保证只初始化一次，或者init初始化，互斥锁保护
+Go单例模式：sync.Once保证只初始化一次，或者init初始化，由标志位和互斥锁构成
 
 GoDS库：常见数据结构和算法（非原生）

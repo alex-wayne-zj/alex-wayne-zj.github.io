@@ -57,7 +57,11 @@ description: "It's a disaster that human need a job."
 
 **关注多个渠道**：公司官网、Boss 直聘、微信就业群等等
 
-字节跳动 - 后端（中国交易与广告）：HR联系✅ —— 一面❌ —— ads infra-策略与预估拼台 —— 一面❌（疑似只有算法岗，希望不大）—— 飞书 AI 助手一面❌ —— [Tik Tok Golang 岗](https://jobs.bytedance.com/campus/position/7529848722042865928/detail )
+字节跳动 - 后端（中国交易与广告）一面❌ —— ads infra-策略与预估拼台一面❌ —— 飞书 AI 助手一面❌ —— 火山引擎 AI infra 一面✅ —— 二面❌
+
+字节跳动 - Tik Tok Golang 岗后端开发校园大使投递✅ & Tim 帮忙今日头条 aidp 岗后端投递✅
+
+腾讯 -  PCG 商业产品部转正❌ —— PCG 研发效能部一面❌  —— CSIG 元宝校招已满❌ —— IEG校招投递✅
 
 网易雷火 - 第一志愿 Web 后端 / 第二志愿游戏服务服务端：内推投递✅
 
@@ -65,11 +69,11 @@ Apple - 初级软件工程师 / 云服务工程师：简历投递✅
 
 淘天 - AI Agent 应用开发：内推投递❌
 
-阿里云 - AI 后端 / Golang 后端：内推投递✅ —— 一面❌
+阿里云 - AI 后端 / Golang 后端：内推投递✅ —— 一面❌ —— 安全云产品一面❌
 
 腾讯音乐 - 后端开发：内推投递✅
 
-拼多多 - 服务端开发：内推投递✅ —— 笔试❓
+拼多多 - 服务端开发：内推投递✅ —— 笔试❓ —— 二次内推投递✅
 
 京东 - 后端开发：内推投递✅ —— 笔试❓
 
@@ -79,33 +83,54 @@ Apple - 初级软件工程师 / 云服务工程师：简历投递✅
 
 网易互娱 - 一志愿（服务端开发工程师）/ 二志愿（平台研发工程师）内推投递✅
 
-得物 - Golang 开发工程师 校园大使投递✅
+得物 - Golang 开发工程师 校园大使投递✅ - 笔试 ❌
 
-美团 - 后端开发工程师 内推投递✅
+美团 - 后端开发工程师 内推投递✅ —— AI 面试与笔试✅ —— 一面 ❌
+
+蚂蚁 - 基础平台研发工程师 Golang/Python 内推投递✅
+
+携程 - Java 开发工程师投递✅
+
+百度 - Go 研发工程师内推投递✅
+
+Tesla - 0-2 年毕业生后端开发工程师内推投递✅
+
+B站：服务端开发工程师内推投递 ✅ （第二志愿尚未使用）
+
+华为：云计算 BU 通用软件工程师投递✅ （第二志愿尚未使用）
+
+小黑盒：后端开发工程师简历投递✅
+
+滴滴 - 后端研发工程师内推投递✅
+
+小米 - Golang 软件开发工程师✅
+
+高德地图 - Golang 研发，汽车业务投递✅
+
+阿里国际 - 研发工程师 Java 投递✅
+
+科大讯飞 - Go 开发工程师内推投递✅
+
+招商银行 - 信用卡中心软件开发工程师内推投递✅
+
+商汤科技 - 软件开发工程师内推投递✅
+
+淘天 - AI Agent 应用开发工程师内推投递✅
+
+米哈游 - 后端开发工程师内推投递✅
+
+Oppo - 后端工程师内推投递✅
 
 Nvidia
 
 Amazon
 
-Microsoft
-
 Google
 
 SAP
 
-网易互联网
+网易互联网：只有 Java 和 C++
 
-百度
+豆瓣：不招技术
 
-B站（挺多Golang岗的）：https://jobs.bilibili.com/campus/ 
-
-得物
-
-字节跳动
-
-华为：[通用软件开发](https://career.huawei.com/reccampportal/portal5/campus-recruitment-detail.html?jobId=24054&dataSource=1&jobType=0&recruitType=CR&sourceType=001), 
-[云开发](https://career.huawei.com/reccampportal/portal5/campus-recruitment-detail.html?jobId=24072&dataSource=1&jobType=0&recruitType=CR&sourceType=001)
-
-千岛：[Golang](https://echotech.jobs.feishu.cn/qiandaozhaopin/position/7264476532075989287/detail)
-
-小黑盒（26年还没开）：[Golang / Python](https://www.xiaoheihe.cn/joinus/campus)
+Microsoft：只招算法研究实习岗

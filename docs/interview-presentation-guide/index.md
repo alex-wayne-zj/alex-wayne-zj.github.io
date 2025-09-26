@@ -7,7 +7,7 @@ tags:
 description: "You are your narrative."
 ---
 
-对工作的期望：倘若能做成一些有价值的事，结识一些有趣的人，学到一些有趣的知识。这份工作精力就不算浪费生命。
+对工作的期望：倘若能做成一些有价值的事，结识一些有趣的人，学到一些有趣的知识。这份工作经历就不算浪费生命。
 
 ## 自我介绍（1min）
 
@@ -29,6 +29,8 @@ description: "You are your narrative."
 
 3. 端口扫描仓库添加4000行+单元测试，使得每个模块单元测试覆盖率超过60%
 
+亮点：了解协议内容 + fofa 查询 IP + go-cobra + wireshark + 网络协议模拟和解析
+
 ## 网心
 
 了解文生图领域的发展情况并实践 Python 后端开发
@@ -38,6 +40,8 @@ description: "You are your narrative."
 2. 基于 Django 框架和开源 JS 项目 splat 构建 3D 高斯泼溅网页应用，用户可将输入视频转化为 3D 场景
 
 3. 使用 FastAPI 框架搭建 Stable Diffusion LoRA 文生图模型风格微调平台后端。
+
+亮点：学习了Stable Diffusion的基本原理，stable-diffusion-webui和comfyui的基本使用，社区开源项目套壳
 
 ## Momenta
 
@@ -68,6 +72,13 @@ description: "You are your narrative."
       2. 暴力修改涉及到的代码太多，需要很久的功能调试时间
       3. 只是实习生性价比较高，万一成功了呢。我也的确通过读代码查到了它引用的两个专门的许可证验证的sdk
 
+亮点：
+
+* 应用登记页面UI和流程优化，结束后实时返回CD状态（go协程启动第三方服务客户端，time库计时，channel通信，前端得到立刻返回后websocket通信，后端返回信息，使用32位随机ID: channel字典防止并行干扰）登记完发送飞书通知
+* 项目在实现页面query和filter变量ref同步时，由于设置了`<router-view :key="$route.fullPath"></router-view>`，使用router.push()实现，每次都会触发页面created和mounted中的函数，基于history.replaceState()替换当前历史记录条目，从而减少向后端的冗余请求和前端重载次数，显著加速了前端页面的加载速度。并基于此包装实现了页面query和filter同步的组件在其它页面应用
+* 在Doris中新建库表，在云端办公机上写Python脚本定时同步各个流程和任务的业务库数据到Doris中，使用Dataease看板或者发送飞书通知来让业务了解流程的执行情况
+* partition（按月分片改成按日分片），计算结果表（因为涉及大量计算：如何从json中取字段，比如计算两个时间的差值，比如case when），类似物化视图，查询时间从10秒级优化到秒级
+
 ## 腾讯
 
 迅速 landing，积极沟通，对新技术保持好奇
@@ -87,6 +98,13 @@ description: "You are your narrative."
     * 接入hunyuan-turbo和hunyuan-vision模型分析文本和视觉内容
     * 通过无极平台管理不同步骤的prompt提示词模板
     * 为KOL生成唯一邀请码并验证邀请码是否有效
+
+亮点：
+
+* 内容工作流节点开发：通过小红书、B站等的AI工作流介绍视频 / 图文链接，自动拆解工作流：基于算法提供能力解析图文URL和视频URL的文本和图像内容，接入hunyuan-turbo和hunyuan-vision模型分析文本和视觉内容，通过无极平台管理不同步骤的prompt提示词模板，为KOL生成唯一邀请码并验证邀请码是否有效
+* 实现LLM调用MCP工具推荐论文：不提供 go-sdk，主动找工蜂内部开发团队
+* 小难点：内部框架、工具和流程文档化做的一般，多问多学
+* 小难点：一直的跑的 golang 协程，第三方服务不稳定，没有接收 Context 的 Done 信号
 
 ## 面试官 Q&A
 
