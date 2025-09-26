@@ -29,7 +29,7 @@ K8s架构：
   - 8080(http, 默认)和6443(https)
   - K8s支持多个API版本，每个版本都在不同的路径下，每次请求需要找到适当的API组和API版本，api-server在/apis下公开了OpenAPI格式的规范文档（缓存在~/.kube/cache中），这个过程为版本协商。
 
-<img src="./api-server.png" alt="描述" loading="lazy"/>
+<!-- <img src="./api-server.png" alt="描述" loading="lazy"/> -->
 
 - kube-controller-manager
     - Node Controller（节点故障通知与响应）
