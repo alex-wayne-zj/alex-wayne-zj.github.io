@@ -21,6 +21,8 @@ Model Context Protocol, 模型上下文协议，Agent 工具调用的统一协�
 * MCP Server：第三方服务通过 MCP 服务端提供 API 能力（contexts, tools, prompts）
     可能调用本地数据源或其他远程服务
 
+资源，工具，事件（服务器推送订阅事件），上下文管理，流式传输，取消信号，面向 agent
+
 <img src="./architecture.jpeg" alt="描述" loading="lazy"/>
 
 MCP是通信标准，可以支持function call（大模型能力）
