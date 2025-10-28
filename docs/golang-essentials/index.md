@@ -16,7 +16,7 @@ golang语言特点（对比其他语言）
 * 简洁、高级语言、协程天然支持多并发（云原生）、C++般的性能、支持垃圾回收、生态堪比Java / Python
   * 选型理由：语言简洁，风格统一，可读性好，可扩展团队合作更方便；编译快速，部署简单，方便迭代；运行性能接近C++；并发模型简单高效
   * 不考虑Golang的理由：极致的性能和安全（C++），已有框架（Spring / Hadoop），AI与科学计算（Python）
-* 多线程方面：C++使用系统级别的原生线程API；Python通过threading创建多线程，但受制于GIL，同一时刻只能有一个线程运行；Golang通过用户级线程goroutine实现并行
+* 多线程方面：C++和Java使用系统级别的原生线程API；Python通过threading创建多线程，但受制于GIL，同一时刻只能有一个线程运行；Golang通过用户级线程goroutine实现并行
 * golang error和java try catch区别：Java是异常会中断流程，自动传递，开销相对较大
 
 什么是GMP调度模型？
@@ -203,7 +203,7 @@ sync.Cond
 
 sync.Map
 * 并发安全哈希表，尤其适合读多写少的场景，避免传统map+mutex的性能瓶颈
-* 读写分离，空间换时间：read map是无锁只读快照；dirty map加锁后执行写操作Store / Delete（标记 expunged，nil 是真删除）；未命中次数超过阈值时，会讲 dirty 提升为新的 read，新 dirty 写入时按需创建
+* 读写分离，空间换时间：read map是无锁只读快照；dirty map加锁后执行写操作Store / Delete（标记 expunged，nil 是真删除）；未命中次数超过阈值dirty长度时，会讲 dirty 提升为新的 read，新 dirty 写入时按需创建
 
 sync.Pool
 * 保存临时对象池，核心是为了**减少高并发下内存分配和垃圾回收压力**。比如在处理HTTP请求时将bytes.Buffer / context池化，池负责管理对象生命周期、并发安全和控制数量
@@ -212,12 +212,12 @@ sync.RWMutex
 * 机制和MySQL的S Lock和X Lock行为一致。读锁时允许所有线程获取读锁读，彼此间可共存；写锁时只允许一个线程读写
 
 sync.Mutex / 互斥锁的两种模式
-* 互斥锁：一个goroutine获取到后，其他goroutine必须等待。通过原子操作和信号量（阻塞和唤醒）实现
+* 互斥锁：一个goroutine获取到后，其他goroutine必须等待。通过原子操作实现
 * normal：新请求锁的goroutine更容易获取锁（极短自旋）
 * starvation：公平排队（超过 1ms），防止饥饿
 
 sync.Atomic底层实现
-* 采用CAS(CompareAndSwap)，CPU级别的原子性操作
+* 采用CAS(CompareAndSwap)，CPU硬件级别的原子性操作
 * 原子操作是 CPU 实现的，针对单个数据；锁是语言实现的，保护临界区，性能更差
 
 什么是rune
