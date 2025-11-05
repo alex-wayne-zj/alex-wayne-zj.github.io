@@ -665,7 +665,7 @@ RocketMQ的主要文件：CommitLog，ConsumerQueue，Indexfile
 
 KStream 无边界数据流
 
-RocketMQ的Broker分为Master和Slave，Slave只负责同步数据
+RocketMQ的Broker分为Master和Slave，Slave只负责同步数据（而Kafka的Broker各自独立）
 
 队列类型：
 
