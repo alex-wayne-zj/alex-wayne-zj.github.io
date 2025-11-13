@@ -125,7 +125,7 @@ Vue3通过ES6的Proxy代理要响应变化的数据
 
 事件循环机制的核心是不断地检查调用栈和任务队列：执行同步代码，执行微任务，执行宏任务，UI渲染
 
-null代表无，undefined代表有值但未初始化
+null代表无且不应该有值，undefined代表应该有值但未初始化
 
 JS变量用typeof和instanceof判断类型
        
@@ -151,3 +151,7 @@ call / apply / bind都是用来重定义this对象，第二个参数用来传参
 原型链：显式原型prototype，隐式原型__proto\_\_，JS 的继承
        
 对于DOM节点，Attribute是DOM节点自带属性，Property是DOM对象附加属性
+
+Array.sort函数默认是字符串排序
+
+new实现原理：创建一个空对象，this指向该空对象，新对象执行原型连接，属性和方法被添加到this中

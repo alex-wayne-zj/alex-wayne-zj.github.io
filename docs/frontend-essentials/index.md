@@ -97,3 +97,9 @@ margin-left和margin-right可以设置负值，左右盒子会跟过来覆盖，
 浏览器怪异模式：浏览器用自己的方式解析执行代码（主要是在标准化之前浏览器有自己的实现方式）
       
 网页内容（包括CSS 和 JS）从上到下顺序渲染
+
+## 浏览器
+
+Chrome多进程：Browser Process, Renderer Process, Plugin Process
+
+Browser Process多线程：UI thread, network thread, storage thread
