@@ -3,3 +3,4 @@ docs/.vitepress/cache/
 docs/.vitepress/dist/
 docs/**/.DS_Store
 .DS_Store
+docs/interview-presentation-guide/index.md

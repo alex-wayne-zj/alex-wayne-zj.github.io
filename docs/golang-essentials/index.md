@@ -29,6 +29,7 @@ golang语言特点（对比其他语言）
   * m0 为主系统线程，后续和其他 M 没区别；g0 为 M 的调度线程
 * **自旋线程**：处于运行状态但是没有可执行goroutine的线程，循环等待，不阻塞减少上下文切换
 * goroutine数据结构：stack(2kb), pc, status, 上下文
+* 调度时机：系统调用、等待管道、等待互斥量、time.Sleep
 
 **Go垃圾回收**
 
@@ -95,6 +96,7 @@ Go面向对象是如何实现的？
 interface 底层原理
 
 * 两种数据结构：eface，空接口实现，包含 _type 指针和 data 指针；iface，带方法接口实现，itab 存储接口类型和方法表
+* interface常用于依赖注入、多态、反射等领域
 
 类型转换和类型断言
 
@@ -203,7 +205,7 @@ sync.Cond
 
 sync.Map
 * 并发安全哈希表，尤其适合读多写少的场景，避免传统map+mutex的性能瓶颈
-* 读写分离，空间换时间：read map是无锁只读快照；dirty map加锁后执行写操作Store / Delete（标记 expunged，nil 是真删除）；未命中次数超过阈值dirty长度时，会讲 dirty 提升为新的 read，新 dirty 写入时按需创建
+* 读写分离，空间换时间：read map是无锁只读快照；dirty map加锁后执行写操作Store / Delete（read map标记 expunged，nil 是真删除）；未命中次数超过阈值dirty长度时，会讲 dirty 提升为新的 read，新 dirty 写入时按需创建
 
 sync.Pool
 * 保存临时对象池，核心是为了**减少高并发下内存分配和垃圾回收压力**。比如在处理HTTP请求时将bytes.Buffer / context池化，池负责管理对象生命周期、并发安全和控制数量
@@ -271,6 +273,7 @@ unsafe.Pointer
 
 golang map 为什么要刻意随机
 * 扩容后键值对位置发生变化，防止开发者写出不鲁棒的代码
+* 扩容条件：装载超过阈值，overflow的bucket数量过多。渐进式扩容
 
 map 的 key 为什么要是可比较的
 * 哈希冲突时判断
@@ -345,7 +348,7 @@ go的模块名是项目唯一标识符：go mod init [module-name]，不同于pa
 
 gin用validate检查tag做参数校验
 
-context包用于在多个goroutine间安全传递上下文信息、设置截止日期、同步取消信号、传递请求元信息。属性：Deadline, Done, Err, Value. 
+context包用于在多个goroutine间安全传递上下文信息、设置截止日期、同步取消信号、传递请求元信息。属性：Deadline(返回时间点), Done(返回channel，监听是否关闭来判断是否结束), Err, Value. 
 
 context.Value 是链式查找
 
