@@ -4,7 +4,7 @@ date: 2026-02-16
 cover: "cover.jpg"
 tags: 
   - 生活
-description: ""
+description: "往者不可谏，来者犹可追。"
 ---
 
 ## 前言

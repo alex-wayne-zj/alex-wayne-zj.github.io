@@ -54,6 +54,8 @@ description: "Your salary can’t buy you the freedom of wealth."
 
 追求多元化资产配置，保护下行风险，在任何一个市场都能分享到增长的机会。
 
+目标年化收益率 10%
+
 **不同资产类别**：
 
 * 按每月1w记，存6w货币基金
