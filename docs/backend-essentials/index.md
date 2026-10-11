@@ -2,10 +2,8 @@
 title: 后端知识库
 date: 2022-11-03
 cover: "./cover.jpg"
-tags: 
-  - 面试
-  - 后端
-  - 职业技能
+tags:
+  - 技术
 description: "More than RESTful/RPC API."
 ---
 

@@ -2,8 +2,8 @@
 title: 2025秋招记录
 date: 2025-03-14
 cover: "./cover.jpg"
-tags: 
-  - 面试
+tags:
+  - 指北
 description: "It's a disaster that human need a job."
 ---
 

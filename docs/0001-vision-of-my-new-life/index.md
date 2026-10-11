@@ -2,8 +2,8 @@
 title: 我的人生，才刚刚开始！
 date: 2026-01-01
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 随笔
 description: "Finally, you are a grown-up."
 ---
 

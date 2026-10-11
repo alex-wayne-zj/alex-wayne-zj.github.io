@@ -2,8 +2,8 @@
 title: 从丝之歌看游戏与人性
 date: 2025-11-07
 cover: "cover.jpg"
-tags: 
-  - 游戏
+tags:
+  - 文艺
 description: "All tragedy erased, I see only wonders."
 ---
 

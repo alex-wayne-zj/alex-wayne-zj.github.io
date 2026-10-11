@@ -2,10 +2,8 @@
 title: K8s&Docker知识库
 date: 2024-07-04
 cover: "./cover.jpg"
-tags: 
-  - 职业技能
-  - 面试
-  - 后端
+tags:
+  - 技术
 description: "The vibe of hive."
 ---
 

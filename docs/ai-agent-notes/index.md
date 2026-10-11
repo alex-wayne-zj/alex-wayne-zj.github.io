@@ -2,9 +2,8 @@
 title: AI Agent 笔记
 date: 2025-05-30
 cover: "./cover.png"
-tags: 
-  - AI
-  - 职业技能
+tags:
+  - 技术
 description: "Future is coming."
 ---
 

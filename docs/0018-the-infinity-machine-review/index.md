@@ -2,8 +2,8 @@
 title: 人类的终局
 date: 2026-08-09
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 文艺
 description: "人类花了几百年学会屏蔽感性工具化自己，回头却发现最强大的工具已然诞生"
 ---
 

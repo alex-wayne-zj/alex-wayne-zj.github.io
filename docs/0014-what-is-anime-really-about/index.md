@@ -2,8 +2,8 @@
 title: 二次元是如何形成的
 date: 2026-06-04
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 文艺
 description: "Frieren, Ich liebe dich."
 ---
 

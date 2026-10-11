@@ -2,8 +2,8 @@
 title: 2025年作品回顾
 date: 2025-12-11
 cover: "cover.jpeg"
-tags: 
-  - 生活
+tags:
+  - 文艺
 description: "You're what you digest."
 ---
 

@@ -2,8 +2,8 @@
 title: 死亡是悬置的人生命题吗
 date: 2026-09-25
 cover: "cover.jpg"
-tags: 
-  - 书评
+tags:
+  - 文艺
 description: "假若你明天死去，今天你会怎样活？"
 ---
 

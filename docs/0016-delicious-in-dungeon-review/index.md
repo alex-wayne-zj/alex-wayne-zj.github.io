@@ -2,8 +2,8 @@
 title: 山川异域，风月同天
 date: 2026-06-25
 cover: "cover.jpg"
-tags: 
-  - 动漫
+tags:
+  - 文艺
 description: "什么都不说，什么都不吃，你这张嘴长来干什么的"
 ---
 

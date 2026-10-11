@@ -2,8 +2,8 @@
 title: 智商税还是情绪价值
 date: 2026-08-23
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 文艺
 description: "照顾自己的情绪是纵容吗？"
 ---
 

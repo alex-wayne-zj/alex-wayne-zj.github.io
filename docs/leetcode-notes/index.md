@@ -2,9 +2,8 @@
 title: LeetCode笔记
 date: 2022-02-18
 cover: "./cover.jpg"
-tags: 
-  - 职业技能
-  - 面试
+tags:
+  - 技术
 description: "Like it or not. You have to be good at this."
 ---
 

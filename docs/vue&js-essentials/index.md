@@ -2,10 +2,8 @@
 title: Vue 和 JS 笔记
 date: 2022-03-14
 cover: "./cover.jpg"
-tags: 
-  - 职业技能
-  - 面试
-  - 前端
+tags:
+  - 技术
 description: "My initial mentor to the software world."
 ---
 

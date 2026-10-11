@@ -2,8 +2,8 @@
 title: 理财知识库
 date: 2023-01-16
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 指北
 description: "Your salary can’t buy you the freedom of wealth."
 ---
 

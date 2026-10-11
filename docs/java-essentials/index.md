@@ -2,9 +2,8 @@
 title: Java知识库
 date: 2022-09-03
 cover: "./cover.jpeg"
-tags: 
-  - 职业技能
-  - 面试
+tags:
+  - 技术
 description: "I don't like it because it's fucking everywhere."
 ---
 

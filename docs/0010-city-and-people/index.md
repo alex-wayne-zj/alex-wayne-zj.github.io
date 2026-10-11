@@ -2,8 +2,8 @@
 title: 城市的人格，人心的故乡
 date: 2026-02-03
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 随笔
 description: "It's my city."
 ---
 

@@ -2,8 +2,8 @@
 title: 社交媒体
 date: 2025-12-06
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 指北
 description: "Double-edge sword."
 ---
 

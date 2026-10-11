@@ -2,8 +2,8 @@
 title: 我心中的年度最佳电影
 date: 2025-11-05
 cover: "cover.png"
-tags: 
-  - 电影
+tags:
+  - 文艺
 description: "师傅，有空多来会馆看看我。"
 ---
 

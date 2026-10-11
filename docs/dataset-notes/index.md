@@ -2,10 +2,8 @@
 title: 数据库笔记
 date: 2021-10-04
 cover: "./cover.jpg"
-tags: 
-  - 面试
-  - 数据库
-  - 职业技能
+tags:
+  - 技术
 description: "The core of the whole universe."
 ---
 

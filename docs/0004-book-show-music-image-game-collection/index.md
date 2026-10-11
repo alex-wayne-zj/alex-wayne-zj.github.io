@@ -2,8 +2,8 @@
 title: 收藏·书影音图游
 date: 2025-08-19
 cover: "./cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 指北
 description: "Artworks are God's presents."
 ---
 

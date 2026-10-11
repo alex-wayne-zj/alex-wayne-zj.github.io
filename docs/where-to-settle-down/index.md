@@ -2,8 +2,8 @@
 title: 何以为家
 date: 2025-06-17
 cover: "./cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 指北
 description: "You can always choose your environment."
 ---
 

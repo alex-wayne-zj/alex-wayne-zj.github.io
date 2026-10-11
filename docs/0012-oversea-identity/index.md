@@ -2,8 +2,8 @@
 title: 海外数字身份指北
 date: 2026-02-28
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 指北
 description: "Horizons define your life path."
 ---
 

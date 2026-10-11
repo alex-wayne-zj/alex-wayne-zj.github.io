@@ -2,8 +2,8 @@
 title: 遥远的2025
 date: 2026-02-16
 cover: "cover.jpg"
-tags: 
-  - 生活
+tags:
+  - 随笔
 description: "往者不可谏，来者犹可追。"
 ---
 

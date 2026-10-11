@@ -2,10 +2,8 @@
 title: 前端知识库
 date: 2022-04-02
 cover: "./cover.jpg"
-tags: 
-  - 职业技能
-  - 面试
-  - 前端
+tags:
+  - 技术
 description: "The first glance at software engineering."
 ---
 

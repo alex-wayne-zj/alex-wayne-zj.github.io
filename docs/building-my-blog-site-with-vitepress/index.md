@@ -2,9 +2,8 @@
 title: VitePress博客站
 date: 2025-07-20
 cover: "./cover.jpg"
-tags: 
-  - GitHub
-  - 写作
+tags:
+  - 技术
 description: "一方书桌，一纸荒唐。"
 ---
 

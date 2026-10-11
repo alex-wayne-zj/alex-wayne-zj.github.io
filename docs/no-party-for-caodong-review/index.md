@@ -2,9 +2,8 @@
 title: 荒芜与狂怒
 date: 2024-06-18
 cover: "./cover.jpg"
-tags: 
-  - 生活
-  - 音乐
+tags:
+  - 文艺
 description: "于是砸了染缸，才看见大海茫茫。"
 ---
 
