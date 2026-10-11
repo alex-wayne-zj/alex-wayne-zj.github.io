@@ -2,19 +2,22 @@
   <div class="max-w-7xl mx-auto px-4 py-1">
     <!-- 标签分类-->
     <div class="flex items-center justify-center flex-wrap gap-4 mb-4">
-      <div class="cursor-pointer font-semibold hover:underline select-none" @click="showTags = !showTags">
-        标签 <span>{{ showTags ? '⏴' : '⏵' }}</span>
-      </div>
-      <div class="flex flex-wrap items-center gap-4 overflow-hidden transition-all ease-in-out duration-800"
-        :class="showTags ? 'opacity-100 ml-4' : 'max-w-0 max-h-0 opacity-0'">
-        <span v-for="tag in allTags" :key="tag.name" @click="selectedTag = tag.name; currentPage=1" :class="[
+      <button type="button" class="cursor-pointer font-semibold hover:underline select-none"
+        :aria-expanded="showTags" aria-controls="blog-tags" @click="showTags = !showTags">
+        标签 <span aria-hidden="true">{{ showTags ? '⏴' : '⏵' }}</span>
+      </button>
+      <div id="blog-tags" class="flex flex-wrap items-center gap-4 transition-all ease-in-out duration-800"
+        :aria-hidden="!showTags" :inert="showTags ? null : ''"
+        :class="showTags ? 'opacity-100 ml-4' : 'max-w-0 max-h-0 opacity-0 overflow-hidden'">
+        <button type="button" v-for="tag in allTags" :key="tag.name"
+          :aria-pressed="selectedTag === tag.name" @click="selectedTag = tag.name; currentPage=1" :class="[
           'cursor-pointer text-sm transition',
           selectedTag === tag.name
             ? 'underline underline-offset-4 font-semibold'
-            : 'text-gray-600 hover:text-black'
+            : 'text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white'
         ]">
           {{ tag.name }} ({{ tag.count }})
-        </span>
+        </button>
       </div>
     </div>
 
@@ -24,16 +27,17 @@
     </div>
 
     <!-- 分页器 -->
-    <div class="mt-4 flex justify-center space-x-4 text-sm" v-if="totalPages > 1">
-      <span v-for="page in totalPages" :key="page" @click="currentPage = page" :class="[
+    <nav aria-label="文章分页" class="mt-4 flex justify-center space-x-4 text-sm" v-if="totalPages > 1">
+      <button type="button" v-for="page in totalPages" :key="page" :aria-label="`第 ${page} 页`"
+        :aria-current="page === currentPage ? 'page' : null" @click="currentPage = page" :class="[
         'cursor-pointer transition select-none',
         page === currentPage
           ? 'font-semibold underline underline-offset-4'
-          : 'hover:text-black'
+          : 'text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white'
       ]">
         {{ page }}
-      </span>
-    </div>
+      </button>
+    </nav>
 
     <div class="flex items-center justify-center mt-4">
       <span class="text-sm">Stay Sharp. Stay Gentle.</span>

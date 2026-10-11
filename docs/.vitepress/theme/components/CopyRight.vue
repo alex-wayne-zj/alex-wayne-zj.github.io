@@ -69,7 +69,7 @@ const articleLink = computed(() => {
 
 <style scoped>
 a {
-  color: #2563eb; 
+  color: var(--vp-c-brand-1);
   text-decoration: none;
 }
 </style>

@@ -1,6 +1,7 @@
 import { defineConfig, HeadConfig } from "vitepress";
 
 export default defineConfig({
+  lang: "zh-CN",
   title: "Alex's Blogs",
   description: "Stay Sharp, Stay Gentle.",
   cleanUrls: true,
