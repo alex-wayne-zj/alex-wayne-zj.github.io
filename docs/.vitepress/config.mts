@@ -1,5 +1,6 @@
 import { defineConfig, HeadConfig } from "vitepress";
 import coverThumbnails from './plugins/coverThumbnails';
+import { localSearchOptions } from './search';
 
 export default defineConfig({
   vite: {
@@ -51,6 +52,10 @@ export default defineConfig({
     return pageData;
   },
   themeConfig: {
+    search: {
+      provider: 'local',
+      options: localSearchOptions,
+    },
     logo: { src: "/logo.webp", width: 24, height: 24 },
     socialLinks: [
       {

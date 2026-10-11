@@ -64,7 +64,7 @@ const filteredblogs = computed(() => {
 
 const pageSize = 12
 // Use the global date order so filtering doesn't promote older covers.
-const eagerCoverUrls = new Set(blogs.slice(0, pageSize).map(blog => blog.url))
+const eagerCoverUrls = new Set(blogs.slice(0, 4).map(blog => blog.url))
 const currentPage = ref(1)
 
 const totalPages = computed(() =>

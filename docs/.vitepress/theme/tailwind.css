@@ -13,3 +13,12 @@ button:focus-visible {
   font-weight: bold;     
   font-size: 1.25rem;
 }
+
+/* Keep the search trigger next to appearance, rather than beside the logo. */
+@media (min-width: 768px) {
+  .VPNavBarSearch.search {
+    flex-grow: 0;
+    padding-left: 0;
+    margin-right: 16px;
+  }
+}
