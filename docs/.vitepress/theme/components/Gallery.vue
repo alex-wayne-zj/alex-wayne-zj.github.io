@@ -23,7 +23,8 @@
 
     <!-- 博客卡片网格 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <Card v-for="blog in pagedblogs" :key="blog.cover" :blog="blog" />
+      <Card v-for="blog in pagedblogs" :key="blog.url" :blog="blog"
+        :eager="eagerCoverUrls.has(blog.url)" :high-priority="blog.url === blogs[0]?.url" />
     </div>
 
     <!-- 分页器 -->
@@ -62,6 +63,8 @@ const filteredblogs = computed(() => {
 })
 
 const pageSize = 12
+// Use the global date order so filtering doesn't promote older covers.
+const eagerCoverUrls = new Set(blogs.slice(0, pageSize).map(blog => blog.url))
 const currentPage = ref(1)
 
 const totalPages = computed(() =>

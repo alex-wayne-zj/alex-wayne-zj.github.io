@@ -9,7 +9,8 @@
         class="w-full h-full object-cover"
         :src="blog.thumbnail || blog.cover"
         :alt="blog.title"
-        loading="lazy"
+        :loading="eager ? 'eager' : 'lazy'"
+        :fetchpriority="highPriority ? 'high' : 'auto'"
       />
     </div>
     <!-- 下半部分：标题和日期 -->
@@ -29,6 +30,8 @@ defineProps({
   blog: {
     type: Object,
     required: true
-  }
+  },
+  eager: Boolean,
+  highPriority: Boolean,
 })
 </script>
