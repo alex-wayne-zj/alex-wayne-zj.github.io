@@ -48,7 +48,7 @@ export default defineConfig({
     return pageData;
   },
   themeConfig: {
-    logo: "/logo.ico",
+    logo: { src: "/logo.webp", width: 24, height: 24 },
     socialLinks: [
       {
         icon: "github",

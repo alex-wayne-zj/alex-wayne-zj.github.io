@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 py-1">
+  <main class="max-w-7xl mx-auto px-4 py-1">
     <!-- 标签分类-->
     <div class="flex items-center justify-center flex-wrap gap-4 mb-4">
       <button type="button" class="cursor-pointer font-semibold hover:underline select-none"
@@ -27,10 +27,10 @@
     </div>
 
     <!-- 分页器 -->
-    <nav aria-label="文章分页" class="mt-4 flex justify-center space-x-4 text-sm" v-if="totalPages > 1">
+    <nav aria-label="文章分页" class="mt-4 flex justify-center gap-1 text-sm" v-if="totalPages > 1">
       <button type="button" v-for="page in totalPages" :key="page" :aria-label="`第 ${page} 页`"
         :aria-current="page === currentPage ? 'page' : null" @click="selectPage(page)" :class="[
-        'cursor-pointer transition select-none',
+        'inline-flex items-center justify-center min-w-11 min-h-11 cursor-pointer transition select-none',
         page === currentPage
           ? 'font-semibold underline underline-offset-4'
           : 'text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white'
@@ -43,7 +43,7 @@
       <span class="text-sm">Stay Sharp. Stay Gentle.</span>
       <hr>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
