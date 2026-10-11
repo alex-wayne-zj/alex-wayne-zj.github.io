@@ -1,14 +1,27 @@
-import { defineConfig, HeadConfig } from "vitepress";
+import { defineConfig } from "vitepress";
+import { fileURLToPath } from 'node:url';
 import coverThumbnails from './plugins/coverThumbnails';
 import { localSearchOptions } from './search';
+import { builtPageSeo, pageSeo, siteDescription, siteUrl } from './seo';
 
 export default defineConfig({
   vite: {
     plugins: [coverThumbnails()],
+    resolve: {
+      alias: [{
+        // The local provider only needs the shared search button CSS.
+        find: /^@docsearch\/css$/,
+        replacement: fileURLToPath(new URL('./theme/search-button.css', import.meta.url)),
+      }],
+    },
   },
   lang: "zh-CN",
   title: "Alex's Blogs",
-  description: "Stay Sharp, Stay Gentle.",
+  description: siteDescription,
+  sitemap: {
+    hostname: siteUrl,
+    transformItems: items => items.filter(item => item.url !== '404'),
+  },
   cleanUrls: true,
   router: {
     prefetchLinks: false,
@@ -39,18 +52,8 @@ export default defineConfig({
       gtag('config', 'G-5C9535TJJS');`
     ]
   ],
-  transformPageData: (pageData) => {
-    pageData.frontmatter.head ??= [];
-    const title = pageData?.frontmatter?.title || "Alex's Blogs";
-    const description = pageData?.frontmatter?.description || "Stay Sharp, Stay Gentle.";
-    const cover = pageData?.frontmatter?.cover || "/logo.ico";
-
-    pageData.frontmatter.head.push(["meta", { property: "og:title", content: title }]);
-    pageData.frontmatter.head.push(["meta", { property: "og:description", content: description }]);
-    pageData.frontmatter.head.push(["meta", { property: "og:image", content: cover }]);
-
-    return pageData;
-  },
+  transformPageData: pageSeo,
+  transformHead: builtPageSeo,
   themeConfig: {
     search: {
       provider: 'local',

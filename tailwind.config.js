@@ -1,6 +1,7 @@
 export default {
   content: [
-    './docs/.vitepress/**/*.{js,ts,vue}',
+    // Scan authored components, never generated bundles or cached search data.
+    './docs/.vitepress/theme/**/*.{js,mjs,ts,vue}',
     './docs/**/*.md'
   ],
   theme: {

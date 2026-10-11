@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alex-wayne-zj.github.io/sitemap.xml
