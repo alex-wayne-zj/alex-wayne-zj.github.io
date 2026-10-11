@@ -7,7 +7,7 @@
     <div class="w-full aspect-[2.35/1] overflow-hidden">
       <img
         class="w-full h-full object-cover"
-        :src="blog.cover"
+        :src="blog.thumbnail || blog.cover"
         :alt="blog.title"
         loading="lazy"
       />

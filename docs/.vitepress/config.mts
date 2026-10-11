@@ -1,6 +1,10 @@
 import { defineConfig, HeadConfig } from "vitepress";
+import coverThumbnails from './plugins/coverThumbnails';
 
 export default defineConfig({
+  vite: {
+    plugins: [coverThumbnails()],
+  },
   lang: "zh-CN",
   title: "Alex's Blogs",
   description: "Stay Sharp, Stay Gentle.",

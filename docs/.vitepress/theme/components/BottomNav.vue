@@ -5,7 +5,7 @@
         <div class="relative w-full rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all">
           <img
             class="w-full aspect-[2.35/1] object-cover"
-            :src="prev.cover"
+            :src="prev.thumbnail || prev.cover"
             :alt="prev.title"
             loading="lazy"
           />
@@ -22,7 +22,7 @@
         <div class="relative w-full rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all">
           <img
             class="w-full aspect-[2.35/1] object-cover"
-            :src="next.cover"
+            :src="next.thumbnail || next.cover"
             :alt="next.title"
             loading="lazy"
           />
