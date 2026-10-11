@@ -44,9 +44,9 @@ import { blogs } from './data.js'
 const route = useRoute()
 
 const currentIndex = computed(() => {
-  return blogs.findIndex(blog => blog.url.slice(2) === route.path)
+  return blogs.findIndex(blog => blog.url === route.path)
 })
 
 const prev = computed(() => (currentIndex.value > 0 ? blogs[currentIndex.value - 1] : null))
-const next = computed(() => (currentIndex.value < blogs.length - 1 ? blogs[currentIndex.value + 1] : null))
+const next = computed(() => (currentIndex.value >= 0 && currentIndex.value < blogs.length - 1 ? blogs[currentIndex.value + 1] : null))
 </script>

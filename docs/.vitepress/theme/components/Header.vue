@@ -6,7 +6,7 @@ import { blogs } from './data.js'
 const { frontmatter } = useData()
 const route = useRoute()
 const coverURL = computed(() => {
-  return blogs.find(blog => blog.url.slice(2) === route.path).cover
+  return blogs.find(blog => blog.url === route.path)?.cover
 })
 </script>
 

@@ -9,6 +9,9 @@ export default defineConfig({
   title: "Alex's Blogs",
   description: "Stay Sharp, Stay Gentle.",
   cleanUrls: true,
+  router: {
+    prefetchLinks: false,
+  },
   base: "/",
   head: [
     ["link", { rel: "icon", href: "/logo.ico" }],

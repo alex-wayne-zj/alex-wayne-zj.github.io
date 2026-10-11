@@ -1,16 +1,14 @@
-const modules = import.meta.glob('../../../**/*.md', { eager: true })
-const imageMap = import.meta.glob('../../../**/*.{png,jpeg,jpg,webp}', { query: '?url', import: 'default', eager: true })
+import { data as posts } from './posts.data.mjs'
+
+const imageMap = import.meta.glob('../../../**/cover.{png,jpeg,jpg,webp}', { query: '?url', import: 'default', eager: true })
 const thumbnailMap = import.meta.glob('../../../**/cover.{png,jpeg,jpg,webp}', { query: '?blog-thumbnail', import: 'default', eager: true })
 
-export const blogs = Object.entries(modules)
-  .filter(([_, mod]) => !mod.__pageData.frontmatter.hide)
-  .map(([path, mod]) => {
-    return {
-      title: mod.__pageData.frontmatter.title,
-      date: new Date(mod.__pageData.frontmatter.date),
-      tags: mod.__pageData.frontmatter.tags,
-      url: "../" + path.split('/')[3] + "/",
-      cover: imageMap["../../../" + path.split('/')[3] + "/" + mod.__pageData.frontmatter.cover.replace(/^\.?\//, '')],
-      thumbnail: thumbnailMap["../../../" + path.split('/')[3] + "/" + mod.__pageData.frontmatter.cover.replace(/^\.?\//, '')],
-    }
-  }).sort((a, b) => b.date.getTime() - a.date.getTime())
+export const blogs = posts.map(post => {
+  const coverKey = '../../..' + post.cover
+  return {
+    ...post,
+    date: new Date(post.date),
+    cover: imageMap[coverKey],
+    thumbnail: thumbnailMap[coverKey],
+  }
+})
