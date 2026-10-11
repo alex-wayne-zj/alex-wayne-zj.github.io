@@ -17,7 +17,7 @@ K8S的缺点：安装和配置困难且复杂，管理繁琐，编译和运行�
 
 K8s架构：
 
-<img src="./architecture.png" alt="描述" loading="lazy"/>
+<img src="./architecture.jpg" alt="描述" loading="lazy"/>
 
 ### Control Plane / Master
 

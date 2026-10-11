@@ -1,7 +1,7 @@
 ---
 title: 学生生涯回顾
 date: 2026-01-20
-cover: "cover.jpeg"
+cover: "cover.jpg"
 tags:
   - 随笔
 description: "Learn how to learn things and cherish your curiosity."

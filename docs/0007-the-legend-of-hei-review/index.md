@@ -1,7 +1,7 @@
 ---
 title: 我心中的年度最佳电影
 date: 2025-11-05
-cover: "cover.png"
+cover: "cover.jpg"
 tags:
   - 文艺
 description: "师傅，有空多来会馆看看我。"
@@ -11,7 +11,7 @@ description: "师傅，有空多来会馆看看我。"
 
 不需要冠以国漫前缀限制的好电影
 
-<img src="./poster.png" alt="描述" loading="lazy"/>
+<img src="./poster.jpg" alt="描述" loading="lazy"/>
 
 > 怎么票房只有5亿多，在我心中比某百亿票房电影冠军好太多了...
 > 
@@ -29,7 +29,7 @@ description: "师傅，有空多来会馆看看我。"
 
 比如无限和小黑一起吃麦当劳
 
-<img src="./routine.png" alt="描述" loading="lazy"/>
+<img src="./routine.jpg" alt="描述" loading="lazy"/>
 
 以及哪吒在游戏中被暴打不服气
 
