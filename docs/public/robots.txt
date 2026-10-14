@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
 
+# Opt out of AI training and AI search crawling.
+# These rules rely on crawlers honoring robots.txt; they are not access controls.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Disallow: /
+
 Sitemap: https://alex-wayne-zj.github.io/sitemap.xml

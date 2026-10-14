@@ -29,6 +29,7 @@ export default defineConfig({
   base: "/",
   head: [
     ["link", { rel: "icon", href: "/logo.ico" }],
+    ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
     // Add meta keywords for SEO
     [
       "meta",
